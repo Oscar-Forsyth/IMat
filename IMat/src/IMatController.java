@@ -15,47 +15,36 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
 public class IMatController implements Initializable {
-      private Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
+    private Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
+    private ProductListItem productListItem;
+    private IMatBackendController imatbc;
 
-@FXML private FlowPane listItemsFlowPane;
-
-private ProductListItem productListItem;
-private IMatBackendController imatbc;
-private AnchorPane ProductListItemAnchorPane;
+    @FXML private FlowPane listItemsFlowPane;
+    @FXML private AnchorPane ProductListItemAnchorPane;
 
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Hi");
-        /*for (Product product : imatbc.getProductsFromCategory(ProductCategory.FRUIT)) {
-            productListItemMap.put(product.getName(), productListItem);
-        }
+        imatbc = new IMatBackendController();
+
 
         for(Product product : imatbc.getProducts()){
             ProductListItem productListItem = new ProductListItem(product,this);
             productListItemMap.put(product.getName(), productListItem);
             System.out.println(product.getName());
         }
-
-         */
-        try {
             updateProductList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
 
-    private void updateProductList() throws IOException {
-
-       /* listItemsFlowPane.getChildren().clear();
+    private void updateProductList()  {
+        listItemsFlowPane.getChildren().clear();
         for(Product product : imatbc.getProducts()){
             listItemsFlowPane.getChildren().add(productListItemMap.get(product.getName()));
         }
-        */
-        FXMLLoader.load(getClass().getResource("product_listitem.fxml"));
 
     }
 

@@ -12,7 +12,8 @@ public class ProductListItem extends AnchorPane {
 
     public ProductListItem(Product product, IMatController iMatController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_listitem.fxml"));
-
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
 
         try {
             fxmlLoader.load();

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class IMatBackendController {
     private String productName;
-    private IMatDataHandler iMatDataHandler;
+    static IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
 
     public List<Product> getProducts(){
         List<Product> products = iMatDataHandler.getProducts();
