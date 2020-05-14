@@ -17,10 +17,12 @@ public class IMat extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("IMat.fxml"), bundle);
 
+
         Scene scene = new Scene(root, 1980, 1080);
 
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
 
     }

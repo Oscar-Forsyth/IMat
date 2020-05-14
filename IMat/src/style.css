@@ -63,3 +63,8 @@
 
 }
 
+.ListOfBuys {
+    -fx-border-color:#707070;
+    -fx-border-width:1px;
+}
+
