@@ -1,9 +1,6 @@
 .MenuButton {
 	-fx-background-color:#f47e7a;
 	-fx-background-radius: 28px;
-	/*-fx-display:inline-block;*/
-	-fx-cursor:pointer;
-	-fx-font-color:#ffffff;
 	-fx-font-family:Arial;
 	-fx-font-size:30px;
 	-fx-text-decoration:none;
@@ -13,8 +10,6 @@
 	-fx-background-color:#fa4946;
 	-fx-cursor:hand;
 }
-
-
 
 .Searchbar {
 	-fx-background-color:#000000;
@@ -51,13 +46,10 @@
     -fx-background-color:white;
     -fx-border-color: black;
     -fx-border-width: 3px 3px 3px 3px;
+    -fx-cursor:hand;
 }
 
-.ProductListItemButton{
-    -fx-background-color:#f47e7a;
-    -fx-background-radius: 28px;
-    -fx-display: inline-block;
-}
+
 .CategoryText{
     -fx-border-color: black;
     -fx-border-width: 0px 0px 3px 0px;
@@ -68,5 +60,9 @@
     -fx-border-color: black;
     -fx-border-width: 3px 3px 3px 3px;
     -fx-background-color:white;
+}
+.ProductInformationPane{
+    -fx-background-color:white;
+    -fx-border-color: black;
 }
 

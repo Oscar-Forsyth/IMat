@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="368.0" prefWidth="267.0" styleClass="ProductListItem" stylesheets="@style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="productListItemPane" onMouseClicked="#openDetailView" prefHeight="368.0" prefWidth="267.0" styleClass="ProductListItem" stylesheets="@style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="ImagePreview" fitHeight="175.0" fitWidth="223.0" layoutX="22.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,7 +25,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="22.0" layoutY="285.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="223.0" styleClass="ProductListItemButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+      <Button layoutX="22.0" layoutY="285.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="223.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

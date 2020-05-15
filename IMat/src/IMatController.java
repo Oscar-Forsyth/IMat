@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import java.io.IOException;
@@ -42,6 +43,14 @@ public class IMatController implements Initializable {
     @FXML private AnchorPane homepageBigAnchorPane;
     @FXML private AnchorPane ProductsAnchorPane;
     @FXML private AnchorPane HomepageBigAnchorPane;
+    @FXML private ImageView exitViewPaneImage;
+    @FXML private AnchorPane detailedViewPane;
+    @FXML private AnchorPane shadowPane;
+    @FXML private ImageView detailedViewProductImage;
+    @FXML private Label detailedViewProductECO;
+    @FXML private Label detailedViewProductTitle;
+    @FXML private Label detailedViewProductPrice;
+
 
 
     @Override
@@ -64,6 +73,24 @@ public class IMatController implements Initializable {
         ProductsAnchorPane.toBack();
         HomepageBigAnchorPane.toFront();
     }
+
+    public void detailedViewPaneToFront(Product product){
+        String isEco ="";
+        if(product.isEcological()){
+            isEco = "Ja";
+        }
+        else{
+            isEco = "Nej";
+        }
+        detailedViewPane.toFront();
+        detailedViewProductECO.setText("ECO: " + isEco);
+        detailedViewProductImage.setImage(this.getImage(product));
+        detailedViewProductPrice.setText(product.getPrice() + " " + product.getUnit());
+        detailedViewProductTitle.setText(product.getName());
+
+    }
+
+
 
 
     public Image getImage(Product product){
@@ -258,6 +285,25 @@ public class IMatController implements Initializable {
             listItemsFlowPane.getChildren().add(productListItemMap.get(product.getName()));
         }
 
+    }
+    @FXML
+    public void closeButtonMouseEntered(){
+        exitViewPaneImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "img/icon_close_hover.png")));
+        exitViewPaneImage.setStyle("-fx-cursor:hand");
+    }
+
+    @FXML
+    public void closeButtonMousePressed(){
+        exitViewPaneImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "img/icon_close.png")));
+        navigationPaneToFront();
+    }
+
+    @FXML
+    public void closeButtonMouseExited(){
+        exitViewPaneImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "img/icon_close.png")));
     }
 
 

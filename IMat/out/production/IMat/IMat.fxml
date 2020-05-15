@@ -152,6 +152,46 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="detailedViewPane" prefHeight="947.0" prefWidth="1531.0">
+               <children>
+                  <AnchorPane fx:id="shadowPane" onMouseClicked="#navigationPaneToFront" opacity="0.71" prefHeight="947.0" prefWidth="1531.0" style="-fx-background-color: black;" />
+                  <AnchorPane layoutX="29.0" layoutY="32.0" prefHeight="893.0" prefWidth="1481.0" styleClass="ProductInformationPane">
+                     <children>
+                        <ImageView fx:id="exitViewPaneImage" fitHeight="75.0" fitWidth="74.0" layoutX="1393.0" layoutY="14.0" onMouseClicked="#closeButtonMousePressed" onMouseEntered="#closeButtonMouseEntered" onMouseExited="#closeButtonMouseExited" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/icon_close.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="detailedViewProductImage" fitHeight="515.0" fitWidth="683.0" layoutX="58.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/product_45.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="detailedViewProductTitle" layoutX="783.0" layoutY="88.0" prefHeight="101.0" prefWidth="539.0" style="-fx-alignment: center;" text="Mango">
+                           <font>
+                              <Font size="69.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="detailedViewProductPrice" layoutX="783.0" layoutY="200.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" text="20  kr/st">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="detailedViewProductECO" layoutX="1045.0" layoutY="188.0" prefHeight="77.0" prefWidth="277.0" style="-fx-alignment: center;" text="ECO: Ja">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="783.0" layoutY="276.0" prefHeight="277.0" prefWidth="539.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi maximus, sem id aliquet mollis, risus quam placerat ex, sed mollis eros eros et neque. Fusce nec fringilla lorem. Quisque quis nisi ac lectus mattis feugiat. Proin purus arcu, dignissim sed facilisis at, dapibus a dolor. Pellentesque ultrices sit amet arcu id aliquam." wrapText="true">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="866.0" layoutY="603.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="374.0" styleClass="MenuButton" text="Lägg till i varukorgen" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="HomepageBigAnchorPane" prefHeight="947.0" prefWidth="1531.0" style="-fx-background-color: #F7EBE8;">
                <children>
                   <AnchorPane prefHeight="117.0" prefWidth="1531.0" styleClass="CategoryText">
@@ -215,7 +255,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Button layoutX="33.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="ProductListItemButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+                        <Button layoutX="33.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -242,22 +282,22 @@
                               <Image url="@img/product_45.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="41.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="ProductListItemButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+                        <Button layoutX="41.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Label layoutX="11.0" layoutY="162.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="Mango" textAlignment="CENTER">
+                        <Label layoutX="11.0" layoutY="164.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="Mango" textAlignment="CENTER">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Label layoutX="74.0" layoutY="206.0" prefHeight="53.0" prefWidth="131.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="7 kr/st" textFill="#fc7575">
+                        <Label layoutX="66.0" layoutY="207.0" prefHeight="53.0" prefWidth="147.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="10 kr/st" textFill="#fc7575">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label layoutX="69.0" layoutY="252.0" prefHeight="35.0" prefWidth="147.0" text="Ordinaie pris 10 kr/st">
+                        <Label layoutX="69.0" layoutY="252.0" prefHeight="35.0" prefWidth="157.0" text="Ordinaie pris 14.75 kr/st">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -274,7 +314,7 @@
                               <Image url="@img/product_34.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="33.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="ProductListItemButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+                        <Button layoutX="33.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -284,7 +324,7 @@
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Label layoutX="62.0" layoutY="206.0" prefHeight="53.0" prefWidth="157.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="14 kr/st" textFill="#fc7575">
+                        <Label layoutX="62.0" layoutY="206.0" prefHeight="53.0" prefWidth="157.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="13 kr/st" textFill="#fc7575">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
@@ -301,27 +341,27 @@
                   </AnchorPane>
                   <AnchorPane layoutX="437.0" layoutY="555.0" prefHeight="368.0" prefWidth="267.0" styleClass="ProductListItem" stylesheets="@style.css">
                      <children>
-                        <ImageView fitHeight="154.0" fitWidth="197.0" layoutX="33.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="155.0" fitWidth="197.0" layoutX="33.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/product_41.jpg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="34.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="ProductListItemButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+                        <Button layoutX="34.0" layoutY="293.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="212.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Button>
-                        <Label layoutX="17.0" layoutY="161.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="Mjölk" textAlignment="CENTER">
+                        <Label layoutX="3.0" layoutY="158.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="Ananas" textAlignment="CENTER">
                            <font>
                               <Font size="32.0" />
                            </font>
                         </Label>
-                        <Label layoutX="80.0" layoutY="205.0" prefHeight="53.0" prefWidth="131.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="7 kr/st" textFill="#fc7575">
+                        <Label layoutX="67.0" layoutY="205.0" prefHeight="53.0" prefWidth="147.0" style="-fx-alignment: center;" styleClass="ProductListItemText" stylesheets="@style.css" text="15 kr/st" textFill="#fc7575">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Label>
-                        <Label layoutX="75.0" layoutY="251.0" prefHeight="35.0" prefWidth="147.0" text="Ordinaie pris 10 kr/st">
+                        <Label layoutX="75.0" layoutY="251.0" prefHeight="35.0" prefWidth="147.0" text="Ordinaie pris 18 kr/st">
                            <font>
                               <Font size="14.0" />
                            </font>

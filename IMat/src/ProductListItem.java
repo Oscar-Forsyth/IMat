@@ -31,4 +31,8 @@ public class ProductListItem extends AnchorPane {
         LabelPreview.setText(product.getName());
         PricePreview.setText(product.getPrice()+ " " + product.getUnit());
     }
+    @FXML protected void openDetailView(){
+        parentController.detailedViewPaneToFront(product);
+    }
+
 }
