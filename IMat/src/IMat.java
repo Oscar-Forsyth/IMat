@@ -1,10 +1,12 @@
+
+
+
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ResourceBundle;
 
 public class IMat extends Application {
 
@@ -13,9 +15,9 @@ public class IMat extends Application {
 
         ResourceBundle bundle = java.util.ResourceBundle.getBundle("IMat");
 
-        Parent root = FXMLLoader.load(getClass().getResource("iMat.fxml"), bundle);
+        Parent root = FXMLLoader.load(getClass().getResource("IMat.fxml"), bundle);
 
-        Scene scene = new Scene(root, 1920, 1080);
+        Scene scene = new Scene(root, 1980, 1080);
 
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
@@ -29,4 +31,5 @@ public class IMat extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
