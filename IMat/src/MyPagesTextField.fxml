@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="722.0" stylesheets="@style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="phonenumber" layoutX="4.0" layoutY="188.0" prefHeight="75.0" prefWidth="722.0" promptText="Telefonnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="adress" layoutY="277.0" prefHeight="75.0" prefWidth="472.0" promptText="Hemadress" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="email" layoutY="102.0" prefHeight="75.0" prefWidth="722.0" promptText="E-mail" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="postalCode" layoutX="486.0" layoutY="277.0" prefHeight="75.0" prefWidth="240.0" promptText="Postnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="surname" layoutX="365.0" layoutY="6.0" prefHeight="75.0" prefWidth="356.0" promptText="Efternamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="prename" layoutX="4.0" layoutY="6.0" prefHeight="75.0" prefWidth="356.0" promptText="Förnamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </TextField>
+   </children>
+</fx:root>

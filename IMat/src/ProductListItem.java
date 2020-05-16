@@ -1,11 +1,10 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
-
 import java.io.IOException;
 
 public class ProductListItem extends AnchorPane {
@@ -26,12 +25,15 @@ public class ProductListItem extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
         this.parentController = iMatController;
         this.product = product;
-
         ImagePreview.setImage(parentController.getImage(product));
         LabelPreview.setText(product.getName());
-        PricePreview.setText(String.valueOf(product.getPrice())+" kr");
-
+        PricePreview.setText(product.getPrice()+ " " + product.getUnit());
     }
+    @FXML protected void openDetailView(){
+        parentController.detailedViewPaneToFront(product);
+    }
+
 }

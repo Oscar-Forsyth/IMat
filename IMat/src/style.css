@@ -35,13 +35,42 @@
     -fx-background-color:#3D3B3B ;
 }
 .SideMenuListItems{
-    -fx-cursor:pointer;
+    -fx-background-color:#3D3B3B;
 }
 .SideMenuListItems:hover{
+    -fx-pointer:hand;
     -fx-background-color:#f47e7a;
 }
+.SideMenuListItemsSelected{
+    -fx-background-color:#f47e7a
+}
+.SideMenuListItemsSelected:hover{
+    -fx-pointer:hand;
+    -fx-background-color:#f47e7a;
+}
+
 .ProductListItem{
-    -fx-text-align:center;
+    -fx-background-color:white;
+    -fx-border-color: black;
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-cursor:hand;
+}
+
+
+.CategoryText{
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-background-color:white;
+}
+
+.HomePageAnchorPane{
+    -fx-border-color: black;
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-background-color:white;
+}
+.ProductInformationPane{
+    -fx-background-color:white;
+    -fx-border-color: black;
 }
 .ProductListItemButton{
     -fx-background-color:#f47e7a;
