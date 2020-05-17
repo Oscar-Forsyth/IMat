@@ -1,13 +1,13 @@
 .MenuButton {
 	-fx-background-color:#f47e7a;
-	-fx-background-radius: 100px;
+	-fx-background-radius: 28px;
 	-fx-font-family:Arial;
-	-fx-font-size:36px;
+	-fx-font-size:30px;
 	-fx-text-decoration:none;
 
 }
 .MenuButton:hover {
-	-fx-background-color:#E54B4B;
+	-fx-background-color:#fa4946;
 	-fx-cursor:hand;
 }
 
@@ -16,7 +16,7 @@
 	-fx-background-radius: 28px;
 	-fx-border-color:#f47e7a;
 	-fx-border-width:5px;
-	-fx-border-radius:50px;
+	-fx-border-radius:28px;
 	/*-fx-display:inline-block;*/
 	-fx-cursor:pointer;
 	-fx-font-color:#ffffff;
@@ -29,14 +29,13 @@
 }
 .SideMenuListItems{
     -fx-background-color:#3D3B3B;
-    -fx-padding: 10px 10px 10px 40px;
 }
 .SideMenuListItems:hover{
     -fx-pointer:hand;
     -fx-background-color:#f47e7a;
 }
 .SideMenuListItemsSelected{
-    -fx-background-color:#f47e7a;
+    -fx-background-color:#f47e7a
 }
 .SideMenuListItemsSelected:hover{
     -fx-pointer:hand;
