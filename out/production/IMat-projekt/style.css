@@ -1,0 +1,69 @@
+.MenuButton {
+	-fx-background-color:#f47e7a;
+	-fx-background-radius: 100px;
+	-fx-font-family:Arial;
+	-fx-font-size:36px;
+	-fx-text-decoration:none;
+
+}
+.MenuButton:hover {
+	-fx-background-color:#E54B4B;
+	-fx-cursor:hand;
+}
+
+.Searchbar {
+	-fx-background-color:#000000;
+	-fx-background-radius: 28px;
+	-fx-border-color:#f47e7a;
+	-fx-border-width:5px;
+	-fx-border-radius:50px;
+	/*-fx-display:inline-block;*/
+	-fx-cursor:pointer;
+	-fx-font-color:#ffffff;
+	-fx-font-family:Arial;
+	-fx-font-size:30px;
+	-fx-text-decoration:none;
+}
+.SideMenu{
+    -fx-background-color:#3D3B3B ;
+}
+.SideMenuListItems{
+    -fx-background-color:#3D3B3B;
+    -fx-padding: 10px 10px 10px 40px;
+}
+.SideMenuListItems:hover{
+    -fx-pointer:hand;
+    -fx-background-color:#f47e7a;
+}
+.SideMenuListItemsSelected{
+    -fx-background-color:#f47e7a;
+}
+.SideMenuListItemsSelected:hover{
+    -fx-pointer:hand;
+    -fx-background-color:#f47e7a;
+}
+
+.ProductListItem{
+    -fx-background-color:white;
+    -fx-border-color: black;
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-cursor:hand;
+}
+
+
+.CategoryText{
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-background-color:white;
+}
+
+.HomePageAnchorPane{
+    -fx-border-color: black;
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-background-color:white;
+}
+.ProductInformationPane{
+    -fx-background-color:white;
+    -fx-border-color: black;
+}
+
