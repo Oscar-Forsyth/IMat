@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 public class IMat extends Application {
 
@@ -19,20 +17,13 @@ public class IMat extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("IMat.fxml"), bundle);
 
-
         Scene scene = new Scene(root, 1980, 1080);
 
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.setOnCloseRequest((WindowEvent event1) -> {
-            IMatDataHandler.getInstance().shutDown();
-        });
-
         stage.show();
 
     }
-
 
     /**
      * @param args the command line arguments
