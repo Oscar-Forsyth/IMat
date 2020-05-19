@@ -1,18 +1,25 @@
 .MenuButton {
 	-fx-background-color:#f47e7a;
 	-fx-background-radius: 28px;
+	/*-fx-display:inline-block;*/
+	-fx-cursor:pointer;
+	-fx-font-color:#ffffff;
 	-fx-font-family:Arial;
-	-fx-font-size:30px;
+	-fx-font-size:36px;
 	-fx-text-decoration:none;
+	-fx-width:350px;
 
 }
 .MenuButton:hover {
 	-fx-background-color:#fa4946;
-	-fx-cursor:hand;
+}
+.MenuButton:active {
+	-fx-position:relative;
 }
 
+
 .Searchbar {
-	-fx-background-color:#000000;
+	-fx-background-color:#1E1E24;
 	-fx-background-radius: 28px;
 	-fx-border-color:#f47e7a;
 	-fx-border-width:5px;
@@ -21,7 +28,7 @@
 	-fx-cursor:pointer;
 	-fx-font-color:#ffffff;
 	-fx-font-family:Arial;
-	-fx-font-size:30px;
+	-fx-font-size:36px;
 	-fx-text-decoration:none;
 }
 .SideMenu{
@@ -65,11 +72,28 @@
     -fx-background-color:white;
     -fx-border-color: black;
 }
-.detailedViewAmountofProductsLabel{
-    -fx-border-color:black;
-    -fx-border-width: 3px 3px 3px 3px;
-    -fx-border-radius: 100px;
-    -fx-alignment:center;
-    -fx-font-size:30px;
+.ProductListItemButton{
+    -fx-background-color:#f47e7a;
+    -fx-background-radius: 28px;
+    -fx-display: inline-block;
+
+}
+
+.Textfield {
+	-fx-background-radius: 28px;
+	-fx-cursor:pointer;
+	-fx-font-color:#1E1E24;
+	-fx-font-family:Arial;
+	-fx-font-size:36px;
+	-fx-text-decoration:none;
+	-fx-border-color:#707070;
+    -fx-border-width:1px;
+    -fx-border-radius:28px;
+
+}
+
+.ListOfBuys {
+    -fx-border-color:#707070;
+    -fx-border-width:1px;
 }
 

@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="backend" level="project" />
     <orderEntry type="library" exported="" name="lib" level="application" />
+    <orderEntry type="library" name="projectbackend (2)" level="project" />
+    <orderEntry type="library" name="projectbackend (2)" level="project" />
   </component>
 </module>
