@@ -1,11 +1,8 @@
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -17,15 +14,20 @@ import java.util.*;
 import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 public class IMatController implements Initializable {
     private Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
     private List<PreviousBuyItem> orders = new ArrayList<>();
+    private StringBuilder products = new StringBuilder();
+    private StringBuilder prices = new StringBuilder();
     private ProductListItem productListItem;
     private PreviousBuyItem previousBuyItem;
+  
     private MyPagesTextField myPagesTextField;
     private EditCreditsTextField editCreditsTextField;
     private IMatBackendController imatbc;
+    private double price = 0;
 
     @FXML private FlowPane listItemsFlowPane;
     @FXML private FlowPane previousBuyFlowPane;
@@ -47,6 +49,7 @@ public class IMatController implements Initializable {
     @FXML private AnchorPane NavigationAnchorPane;
     @FXML private AnchorPane ProductsAnchorPane;
     @FXML private AnchorPane HomepageBigAnchorPane;
+    @FXML private AnchorPane PreviousOrderAnchorPane;
     @FXML private ImageView exitViewPaneImage;
     @FXML private AnchorPane detailedViewPane;
     @FXML private AnchorPane shadowPane;
@@ -54,6 +57,11 @@ public class IMatController implements Initializable {
     @FXML private Label detailedViewProductECO;
     @FXML private Label detailedViewProductTitle;
     @FXML private Label detailedViewProductPrice;
+    @FXML private Label totalPriceLabel;
+    @FXML private Label pricesLabel;
+    @FXML private Label productsLabel;
+
+
 
 
 
@@ -74,8 +82,9 @@ public class IMatController implements Initializable {
         for(Order order: imatbc.getOrders()){
             PreviousBuyItem previousBuyItem = new PreviousBuyItem(order,this);
             orders.add(previousBuyItem);
-            System.out.println(order.getOrderNumber());
         }
+       Collections.reverse(orders);
+
         updateOrderList();
         textfieldFlowPane.getChildren().clear();
         MyPagesTextField myPagesTextField = new MyPagesTextField(this);
@@ -110,6 +119,32 @@ public class IMatController implements Initializable {
         detailedViewProductTitle.setText(product.getName());
 
     }
+    public void PreviousOrderToFront(Order order){
+        PreviousOrderAnchorPane.toFront();
+        productsLabel.setText(String.valueOf(getProductsFromOrder(order)));
+        pricesLabel.setText(String.valueOf(getProductPrices(order)));
+        totalPriceLabel.setText(String.valueOf(getOrderPrice(order)));
+    }
+    private double getOrderPrice(Order order){
+        for(ShoppingItem shoppingItem: order.getItems()){
+            price= (price + shoppingItem.getTotal());
+        }
+        return price;
+    }
+    private StringBuilder getProductsFromOrder(Order order){
+        for(ShoppingItem shoppingItem: order.getItems()){
+           products.append(shoppingItem.getProduct().getName());
+           products.append(System.getProperty("line.separator"));
+        }
+        return products;
+    }
+    private StringBuilder getProductPrices(Order order){
+        for(ShoppingItem shoppingItem: order.getItems()){
+            prices.append(shoppingItem.getProduct().getPrice());
+            prices.append(System.getProperty("line.separator"));
+        }
+        return prices;
+    }
 
 
     private void updateProductList()  {
@@ -126,7 +161,6 @@ public class IMatController implements Initializable {
         }
 
     }
-
 
 
     public Image getImage(Product product){
@@ -182,6 +216,16 @@ public class IMatController implements Initializable {
 
     @FXML private void closeMyPages(){
         MyPagesAnchorPane.toBack();
+    }
+
+    @FXML private void closeOrderItem(){
+        PreviousOrderAnchorPane.toBack();
+        prices.setLength(0);
+        products.setLength(0);
+        price=0;
+    }
+    @FXML private void buyOrderAgain(){
+        //Lägg till i varukorgen TODO
     }
     @FXML private void openDetailView(){
         MyPagesAnchorPane.toBack();

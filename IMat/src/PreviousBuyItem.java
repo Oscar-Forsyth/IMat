@@ -42,6 +42,9 @@ public class PreviousBuyItem extends AnchorPane {
         }
         return price;
     }
+    @FXML protected void openPreviousOrder(){
+        parentController.PreviousOrderToFront(order);
+    }
 
 }
 

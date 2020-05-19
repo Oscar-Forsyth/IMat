@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -36,5 +38,30 @@
             <Font size="36.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/close-up.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
+         <image>
+            <Image url="@img/close-up.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
+         <image>
+            <Image url="@img/emails.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
+         <image>
+            <Image url="@img/signs.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="396.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/housing.png" />
+         </image>
+      </ImageView>
    </children>
 </fx:root>

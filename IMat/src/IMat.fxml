@@ -11,12 +11,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMatController">
     <children>
       <AnchorPane fx:id="MyPagesAnchorPane" prefHeight="369.0" prefWidth="529.0" style="-fx-background-color: #F7EBE8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <AnchorPane fx:id="PreviousOrderAnchorPane" layoutX="1131.0" layoutY="451.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="718.0" style="-fx-background-color: d6efd2;">
+               <children>
+                  <Label layoutX="58.0" layoutY="69.0" prefHeight="43.0" prefWidth="191.0" text="Produkt">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Line endX="619.0" layoutX="103.0" layoutY="53.0" startX="-100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Line endX="254.0" endY="-25.5" layoutX="284.0" layoutY="78.0" startX="254.0" startY="447.0" />
+                  <Label layoutX="549.0" layoutY="69.0" prefHeight="53.0" prefWidth="159.0" text="Pris (kr)">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="58.0" layoutY="415.0" prefHeight="53.0" prefWidth="272.0" text="Totalkostnad:">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalPriceLabel" layoutX="549.0" layoutY="415.0" prefHeight="43.0" prefWidth="191.0" text="450">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="539.0" layoutY="467.0" mnemonicParsing="false" onMouseClicked="#buyOrderAgain" prefHeight="60.0" prefWidth="184.0" style="-fx-font-size: 30; -fx-background-color: #60E0E9;" text="Köp igen" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Line endX="619.0" layoutX="101.0" layoutY="122.0" startX="-100.0" />
+                  <Line endX="619.0" layoutX="100.0" layoutY="415.0" startX="-100.0" />
+                  <Label fx:id="productsLabel" layoutX="30.0" layoutY="141.0" prefHeight="258.0" prefWidth="450.0" text="Banan">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pricesLabel" layoutX="557.0" layoutY="133.0" prefHeight="258.0" prefWidth="159.0" text="49">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="637.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: none;" />
+                  <ImageView fitHeight="77.0" fitWidth="39.0" layoutX="673.0" layoutY="7.0" onMouseClicked="#closeOrderItem" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icon_close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
             <Label layoutX="30.0" layoutY="161.0" prefHeight="119.0" prefWidth="417.0" text="Mina Sidor" textFill="#1e1e24" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="161.0">
                <font>
                   <Font name="System Bold" size="76.0" />
@@ -34,7 +80,7 @@
             </Label>
             <HBox fx:id="HBox1" prefHeight="135.0" prefWidth="1920.0" style="-fx-background-color: #1E1E24;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#closeMyPages" prefHeight="75.0" prefWidth="350.0" styleClass="MenuButton" text="Hem" textFill="WHITE" >
+                  <Button mnemonicParsing="false" onMouseClicked="#closeMyPages" prefHeight="75.0" prefWidth="350.0" styleClass="MenuButton" text="Hem" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="30.0" top="30.0" />
                      </HBox.margin>

@@ -23,7 +23,7 @@ public class IMatBackendController {
     }
 
 
-public void addOrder(){
+public void addOrderTest(){
     System.out.println("Testing...");
     final ShoppingCart shoppingCart = iMatDataHandler.getShoppingCart();
     shoppingCart.addShoppingCartListener(new ShoppingCartListener() {
@@ -31,10 +31,15 @@ public void addOrder(){
             System.out.println("cart changed, total: " + shoppingCart.getTotal());
         }
     });
-    shoppingCart.addProduct(iMatDataHandler.getProduct(80));
-    shoppingCart.addProduct(iMatDataHandler.getProduct(80));
+    shoppingCart.addProduct(iMatDataHandler.getProduct(69));
+    shoppingCart.addProduct(iMatDataHandler.getProduct(72));
     shoppingCart.addProduct(iMatDataHandler.getProduct(80));
     iMatDataHandler.placeOrder(true);
+}
+public void clearOrders(){
+        iMatDataHandler.reset();
+        iMatDataHandler.getOrders().clear();
+       System.out.println(iMatDataHandler.getOrders().isEmpty());
 }
     public List<Order> getOrders(){
     return iMatDataHandler.getOrders();}
