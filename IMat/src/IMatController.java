@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -53,9 +54,11 @@ public class IMatController implements Initializable {
 
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imatbc = new IMatBackendController();
+        homePagePaneToFront();
 
         for(Product product : imatbc.getProducts()){
             ProductListItem productListItem = new ProductListItem(product,this);
@@ -63,11 +66,15 @@ public class IMatController implements Initializable {
 
         }
 
+
     }
+
+
 
     public void navigationPaneToFront(){
         ProductsAnchorPane.toFront();
         HomepageBigAnchorPane.toBack();
+        detailedViewPane.toBack();
     }
     public void homePagePaneToFront(){
         ProductsAnchorPane.toBack();

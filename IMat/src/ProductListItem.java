@@ -1,5 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,10 +11,14 @@ import java.io.IOException;
 public class ProductListItem extends AnchorPane {
     private IMatController parentController;
     private Product product;
+    private IMatBackendController imatbc = new IMatBackendController();
 
+    @FXML private Button listItemAddToCartButton;
+    @FXML private AnchorPane amountSelectorPane;
     @FXML private ImageView ImagePreview;
     @FXML private Label LabelPreview;
     @FXML private Label PricePreview;
+    @FXML private Label listItemAmountOfProductsLabel;
 
     public ProductListItem(Product product, IMatController iMatController){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_listitem.fxml"));
@@ -25,14 +30,40 @@ public class ProductListItem extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
         this.parentController = iMatController;
         this.product = product;
         ImagePreview.setImage(parentController.getImage(product));
         LabelPreview.setText(product.getName());
         PricePreview.setText(product.getPrice()+ " " + product.getUnit());
     }
-    @FXML protected void openDetailView(){
+     public void openDetailView(){
         parentController.detailedViewPaneToFront(product);
+    }
+    public void listItemAddToCartButtonToFront(){
+        listItemAddToCartButton.toFront();
+    }
+    public void addToCartFirstButton(){
+        amountSelectorPane.toFront();
+        addToCart();
+    }
+    public void addToCart(){
+        imatbc.addToCart(product);
+        updateLabel();
+        imatbc.printShoppingList();
+
+    }
+    public void removeFromCart(){
+        if(imatbc.removeFromCart(product)){
+            listItemAddToCartButtonToFront();
+        }
+
+        updateLabel();
+    }
+    private void updateLabel(){
+        listItemAmountOfProductsLabel.setText(imatbc.getAmount(product) + "");
+        //System.out.println(imatbc.getAmount(product));
+
     }
 
 }
