@@ -65,4 +65,11 @@
     -fx-background-color:white;
     -fx-border-color: black;
 }
+.detailedViewAmountofProductsLabel{
+    -fx-border-color:black;
+    -fx-border-width: 3px 3px 3px 3px;
+    -fx-border-radius: 100px;
+    -fx-alignment:center;
+    -fx-font-size:30px;
+}
 

@@ -128,6 +128,65 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane prefHeight="135.0" prefWidth="1920.0" style="-fx-background-color: #000;">
+         <children>
+            <Button fx:id="MinaSidorButton1" contentDisplay="TOP" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#homePagePaneToFront" prefHeight="75.0" prefWidth="292.0" styleClass="MenuButton" text="Hem" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Button>
+                <TextField fx:id="Searchbar" alignment="CENTER" layoutX="416.0" layoutY="30.0" prefHeight="77.0" prefWidth="833.0" promptText="Sök" styleClass="Searchbar" />
+                <Button fx:id="VarukorgButton" layoutX="1618.0" layoutY="31.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="277.0" styleClass="MenuButton" text="Varukorg" textFill="WHITE" />
+                <Button fx:id="MinaSidorButton" contentDisplay="TOP" layoutX="1286.0" layoutY="31.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="292.0" styleClass="MenuButton" text="Mina sidor" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="detailedViewPane" prefHeight="1080.0" prefWidth="1920.0">
+         <children>
+            <AnchorPane fx:id="shadowPane" onMouseClicked="#navigationPaneToFront" opacity="0.71" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
+            <AnchorPane layoutX="233.0" layoutY="85.0" prefHeight="895.0" prefWidth="1483.0" styleClass="ProductInformationPane">
+               <children>
+                  <ImageView fx:id="exitViewPaneImage" fitHeight="75.0" fitWidth="74.0" layoutX="1393.0" layoutY="14.0" onMouseClicked="#closeButtonMousePressed" onMouseEntered="#closeButtonMouseEntered" onMouseExited="#closeButtonMouseExited" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icon_close.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="detailedViewProductImage" fitHeight="515.0" fitWidth="683.0" layoutX="58.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/product_45.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="detailedViewProductTitle" layoutX="783.0" layoutY="88.0" prefHeight="101.0" prefWidth="539.0" style="-fx-alignment: center;" text="Mango">
+                     <font>
+                        <Font size="69.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="detailedViewProductPrice" layoutX="783.0" layoutY="200.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" text="20  kr/st">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="detailedViewProductECO" layoutX="1045.0" layoutY="188.0" prefHeight="77.0" prefWidth="277.0" style="-fx-alignment: center;" text="ECO: Ja">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="783.0" layoutY="276.0" prefHeight="277.0" prefWidth="539.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi maximus, sem id aliquet mollis, risus quam placerat ex, sed mollis eros eros et neque. Fusce nec fringilla lorem. Quisque quis nisi ac lectus mattis feugiat. Proin purus arcu, dignissim sed facilisis at, dapibus a dolor. Pellentesque ultrices sit amet arcu id aliquam." wrapText="true">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="866.0" layoutY="603.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="374.0" styleClass="MenuButton" text="Lägg till i varukorgen" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="NavigationAnchorPane" layoutX="391.0" layoutY="135.0" prefHeight="806.0" prefWidth="1134.0">
          <children>
             <AnchorPane fx:id="ProductsAnchorPane" prefHeight="200.0" prefWidth="200.0">
@@ -152,58 +211,18 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="detailedViewPane" prefHeight="947.0" prefWidth="1531.0">
-               <children>
-                  <AnchorPane fx:id="shadowPane" onMouseClicked="#navigationPaneToFront" opacity="0.71" prefHeight="947.0" prefWidth="1531.0" style="-fx-background-color: black;" />
-                  <AnchorPane layoutX="29.0" layoutY="32.0" prefHeight="893.0" prefWidth="1481.0" styleClass="ProductInformationPane">
-                     <children>
-                        <ImageView fx:id="exitViewPaneImage" fitHeight="75.0" fitWidth="74.0" layoutX="1393.0" layoutY="14.0" onMouseClicked="#closeButtonMousePressed" onMouseEntered="#closeButtonMouseEntered" onMouseExited="#closeButtonMouseExited" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/icon_close.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="detailedViewProductImage" fitHeight="515.0" fitWidth="683.0" layoutX="58.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/product_45.jpg" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="detailedViewProductTitle" layoutX="783.0" layoutY="88.0" prefHeight="101.0" prefWidth="539.0" style="-fx-alignment: center;" text="Mango">
-                           <font>
-                              <Font size="69.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="detailedViewProductPrice" layoutX="783.0" layoutY="200.0" prefHeight="53.0" prefWidth="257.0" style="-fx-alignment: center;" text="20  kr/st">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="detailedViewProductECO" layoutX="1045.0" layoutY="188.0" prefHeight="77.0" prefWidth="277.0" style="-fx-alignment: center;" text="ECO: Ja">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="783.0" layoutY="276.0" prefHeight="277.0" prefWidth="539.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi maximus, sem id aliquet mollis, risus quam placerat ex, sed mollis eros eros et neque. Fusce nec fringilla lorem. Quisque quis nisi ac lectus mattis feugiat. Proin purus arcu, dignissim sed facilisis at, dapibus a dolor. Pellentesque ultrices sit amet arcu id aliquam." wrapText="true">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="866.0" layoutY="603.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="374.0" styleClass="MenuButton" text="Lägg till i varukorgen" textFill="WHITE" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="HomepageBigAnchorPane" prefHeight="947.0" prefWidth="1531.0" style="-fx-background-color: #F7EBE8;">
                <children>
-                  <AnchorPane prefHeight="117.0" prefWidth="1531.0" styleClass="CategoryText">
+                  <AnchorPane prefHeight="101.0" prefWidth="1531.0" styleClass="CategoryText">
                      <children>
-                        <Label layoutX="496.0" layoutY="24.0" prefHeight="70.0" prefWidth="466.0" text="Veckans erbjudande">
+                        <Label layoutX="533.0" layoutY="16.0" prefHeight="70.0" prefWidth="466.0" text="Veckans erbjudande">
                            <font>
                               <Font size="48.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="227.0" layoutY="162.0" prefHeight="357.0" prefWidth="1077.0" style="-fx-background-color: white;" styleClass="HomePageAnchorPane" stylesheets="@style.css">
+                  <AnchorPane layoutX="217.0" layoutY="118.0" prefHeight="420.0" prefWidth="1155.0" style="-fx-background-color: white;" styleClass="HomePageAnchorPane" stylesheets="@style.css">
                      <children>
                         <ImageView fitHeight="311.0" fitWidth="422.0" layoutX="29.0" layoutY="29.0" pickOnBounds="true">
                            <image>
@@ -215,7 +234,7 @@
                               <Font size="40.0" />
                            </font>
                         </Label>
-                        <Label layoutX="884.0" layoutY="38.0" prefHeight="61.0" prefWidth="118.0" style="-fx-alignment: center;" text="3 för">
+                        <Label layoutX="943.0" layoutY="34.0" prefHeight="61.0" prefWidth="118.0" style="-fx-alignment: center;" text="3 för">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
@@ -225,22 +244,22 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="854.0" layoutY="90.0" prefHeight="99.0" prefWidth="179.0" style="-fx-alignment: center; -fx-background-color: f2f2f2;" text="30 kr" textFill="#fc7575">
+                        <Label layoutX="913.0" layoutY="86.0" prefHeight="99.0" prefWidth="179.0" style="-fx-alignment: center; -fx-background-color: f2f2f2;" text="30 kr" textFill="#fc7575">
                            <font>
                               <Font name="System Bold" size="48.0" />
                            </font>
                         </Label>
-                        <Label layoutX="496.0" layoutY="161.0" prefHeight="124.0" prefWidth="323.0" text="Earl Grey bjuder på en unik smakupplevelse som många människor inte kan få nog av och det är inte så konstigt varför Earl Grey är en så populär tesort. Smaken beskrivs som kryddig med inslag av citrus men förutom det är det relativt den oförglömliga smaken." wrapText="true">
+                        <Label layoutX="486.0" layoutY="130.0" prefHeight="232.0" prefWidth="365.0" text="Earl Grey bjuder på en unik smakupplevelse som många människor inte kan få nog av och det är inte så konstigt varför Earl Grey är en så populär tesort. Smaken beskrivs som kryddig med inslag av citrus men förutom det är det relativt den oförglömliga smaken." wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="929.0" layoutY="301.0" prefHeight="35.0" prefWidth="147.0" text="Ordinaie pris 20 kr/st">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="870.0" layoutY="305.0" prefHeight="35.0" prefWidth="147.0" text="Ordinaie pris 20 kr/st">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Button layoutX="829.0" layoutY="215.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="229.0" styleClass="MenuButton" text="Lägg till " textFill="WHITE" />
+                        <Button layoutX="888.0" layoutY="211.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="229.0" styleClass="MenuButton" text="Lägg till " textFill="WHITE" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="72.0" layoutY="555.0" prefHeight="368.0" prefWidth="267.0" styleClass="ProductListItem" stylesheets="@style.css">
@@ -373,25 +392,6 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="135.0" prefWidth="1920.0" style="-fx-background-color: #000;">
-         <children>
-            <Button fx:id="MinaSidorButton1" contentDisplay="TOP" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#homePagePaneToFront" prefHeight="75.0" prefWidth="292.0" styleClass="MenuButton" text="Hem" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Button>
-                <TextField fx:id="Searchbar" alignment="CENTER" layoutX="416.0" layoutY="30.0" prefHeight="77.0" prefWidth="833.0" promptText="Sök" styleClass="Searchbar" />
-                <Button fx:id="VarukorgButton" layoutX="1618.0" layoutY="31.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="277.0" styleClass="MenuButton" text="Varukorg" textFill="WHITE" />
-                <Button fx:id="MinaSidorButton" contentDisplay="TOP" layoutX="1286.0" layoutY="31.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="292.0" styleClass="MenuButton" text="Mina sidor" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-                </Button>
          </children>
       </AnchorPane>
     </children>
