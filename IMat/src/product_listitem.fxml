@@ -25,14 +25,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="amountSelectorPane" layoutX="19.0" layoutY="284.0" prefHeight="77.0" prefWidth="232.0" style="-fx-background-color: white;">
-         <children>
-            <Button layoutX="6.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#removeFromCart" prefHeight="56.0" prefWidth="58.0" styleClass="MenuButton" text="-" />
-            <Button layoutX="167.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#addToCart" styleClass="MenuButton" text="+" />
-            <Label fx:id="listItemAmountOfProductsLabel" layoutX="77.0" layoutY="18.0" prefHeight="46.0" prefWidth="79.0" styleClass="detailedViewAmountofProductsLabel" text="1" />
-         </children>
-      </AnchorPane>
-      <Button fx:id="listItemAddToCartButton" layoutX="22.0" layoutY="285.0" mnemonicParsing="false" onMouseClicked="#addToCartFirstButton" prefHeight="69.0" prefWidth="223.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
+      <Button layoutX="22.0" layoutY="285.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="223.0" styleClass="MenuButton" stylesheets="@style.css" text="Lägg till" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
