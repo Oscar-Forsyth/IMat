@@ -36,6 +36,7 @@ public class MyPagesTextField extends AnchorPane {
 
 
     }
+
      public void saveCustomerInfo(){
 
            parentController.setFirstName(prename.getText());

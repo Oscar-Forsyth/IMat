@@ -1,12 +1,14 @@
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Side;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import java.io.IOException;
 
 import java.net.URL;
 import java.util.*;
@@ -14,28 +16,33 @@ import java.util.*;
 import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
+import javafx.scene.control.Label;
 import se.chalmers.cse.dat216.project.ShoppingItem;
+
 
 public class IMatController implements Initializable {
     private Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
+    private ProductListItem productListItem;
     private List<PreviousBuyItem> orders = new ArrayList<>();
     private StringBuilder products = new StringBuilder();
     private StringBuilder prices = new StringBuilder();
-    private ProductListItem productListItem;
     private PreviousBuyItem previousBuyItem;
-  
-    private MyPagesTextField myPagesTextField;
-    private EditCreditsTextField editCreditsTextField;
     private IMatBackendController imatbc;
     private double price = 0;
 
+
+
+
+    private MyPagesTextField myPagesTextField;
+    private EditCreditsTextField editCreditsTextField;
     @FXML private FlowPane listItemsFlowPane;
+    @FXML private AnchorPane ProductListItemAnchorPane;
+    @FXML private AnchorPane MyPagesAnchorPane;
+    @FXML private Label CategoryLabel;
     @FXML private FlowPane previousBuyFlowPane;
     @FXML private FlowPane textfieldFlowPane;
-    @FXML private AnchorPane MyPagesAnchorPane;
     @FXML private Button editCreditsButton;
 
-    @FXML private Label CategoryLabel;
     @FXML private Label fruitSideMenu;
     @FXML private Label vegSideMenu;
     @FXML private Label breadSideMenu;
@@ -47,9 +54,9 @@ public class IMatController implements Initializable {
     @FXML private Label sweetsSideMenu;
     @FXML private Label otherSideMenu;
     @FXML private AnchorPane NavigationAnchorPane;
+    @FXML private AnchorPane homepageBigAnchorPane;
     @FXML private AnchorPane ProductsAnchorPane;
     @FXML private AnchorPane HomepageBigAnchorPane;
-    @FXML private AnchorPane PreviousOrderAnchorPane;
     @FXML private ImageView exitViewPaneImage;
     @FXML private AnchorPane detailedViewPane;
     @FXML private AnchorPane shadowPane;
@@ -60,9 +67,7 @@ public class IMatController implements Initializable {
     @FXML private Label totalPriceLabel;
     @FXML private Label pricesLabel;
     @FXML private Label productsLabel;
-
-
-
+    @FXML private AnchorPane PreviousOrderAnchorPane;
 
 
 
@@ -70,20 +75,22 @@ public class IMatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imatbc = new IMatBackendController();
-
+        homePagePaneToFront();
+        imatbc.addOrderTest();
+        imatbc.addOrderTest();
+        imatbc.addOrderTest();
+        imatbc.addOrderTest();
 
         for(Product product : imatbc.getProducts()){
             ProductListItem productListItem = new ProductListItem(product,this);
             productListItemMap.put(product.getName(), productListItem);
         }
-            updateProductList();
-
-
+        updateProductList();
         for(Order order: imatbc.getOrders()){
             PreviousBuyItem previousBuyItem = new PreviousBuyItem(order,this);
             orders.add(previousBuyItem);
         }
-       Collections.reverse(orders);
+        Collections.reverse(orders);
 
         updateOrderList();
         textfieldFlowPane.getChildren().clear();
@@ -91,17 +98,19 @@ public class IMatController implements Initializable {
         textfieldFlowPane.getChildren().add(myPagesTextField);
         this.myPagesTextField=myPagesTextField;
 
-
-
-
     }
+
+
+
     public void navigationPaneToFront(){
         ProductsAnchorPane.toFront();
         HomepageBigAnchorPane.toBack();
+        detailedViewPane.toBack();
     }
     public void homePagePaneToFront(){
         ProductsAnchorPane.toBack();
         HomepageBigAnchorPane.toFront();
+        detailedViewPane.toBack();
     }
 
     public void detailedViewPaneToFront(Product product){
@@ -125,6 +134,7 @@ public class IMatController implements Initializable {
         pricesLabel.setText(String.valueOf(getProductPrices(order)));
         totalPriceLabel.setText(String.valueOf(getOrderPrice(order)));
     }
+
     private double getOrderPrice(Order order){
         for(ShoppingItem shoppingItem: order.getItems()){
             price= (price + shoppingItem.getTotal());
@@ -133,8 +143,8 @@ public class IMatController implements Initializable {
     }
     private StringBuilder getProductsFromOrder(Order order){
         for(ShoppingItem shoppingItem: order.getItems()){
-           products.append(shoppingItem.getProduct().getName());
-           products.append(System.getProperty("line.separator"));
+            products.append(shoppingItem.getProduct().getName());
+            products.append(System.getProperty("line.separator"));
         }
         return products;
     }
@@ -190,8 +200,11 @@ public class IMatController implements Initializable {
 
 
     @FXML private void saveCustomerInfoFromMyPages(){
-            myPagesTextField.saveCustomerInfo();
+        myPagesTextField.saveCustomerInfo();
+        if(editCreditsTextField != null){
             editCreditsTextField.saveCreditsInfo();
+        }
+
     }
     @FXML private void openEditCredits() {
 
@@ -204,7 +217,7 @@ public class IMatController implements Initializable {
         else{
             textfieldFlowPane.getChildren().clear();
             EditCreditsTextField editCreditsTextField = new EditCreditsTextField(this);
-             textfieldFlowPane.getChildren().add(editCreditsTextField);
+            textfieldFlowPane.getChildren().add(editCreditsTextField);
             this.editCreditsTextField=editCreditsTextField;
             editCreditsButton.setText("Tillbaka");
         }
@@ -227,9 +240,8 @@ public class IMatController implements Initializable {
     @FXML private void buyOrderAgain(){
         //Lägg till i varukorgen TODO
     }
-    @FXML private void openDetailView(){
-        MyPagesAnchorPane.toBack();
-    }
+
+
     public void checkColor(){
         switch(CategoryLabel.getText()){
             case "Frukt":
@@ -431,4 +443,6 @@ public class IMatController implements Initializable {
         exitViewPaneImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
                 "img/icon_close.png")));
     }
+
+
 }
