@@ -45,6 +45,7 @@ public class MyPagesTextField extends AnchorPane {
             parentController.setEmail(email.getText());
             parentController.setPhoneNumber(phonenumber.getText());
             parentController.setPostCode(postalCode.getText());
+         System.out.println(parentController.getFirstname());
 
     }
     public void updateCustomerInfo(){

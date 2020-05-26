@@ -6,14 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IMatBackendController {
-    private static IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
-    private static ShoppingCart shoppingCart = iMatDataHandler.getShoppingCart();
-
+    private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
+    private ShoppingCart shoppingCart = iMatDataHandler.getShoppingCart();
 
 
     public List<Product> getProducts(){
         List<Product> products = iMatDataHandler.getProducts();
         return products;
+    }
+    public Product getSingleProduct(String name){
+        for(Product product : getProducts() ){
+            if(product.getName().equals(name)){
+                return product;
+            }
+        }
+        return null;
     }
 
     public List<Product> getProductsFromCategory(ProductCategory pc){
@@ -23,22 +30,27 @@ public class IMatBackendController {
     public Image getImage(Product product){
         return iMatDataHandler.getFXImage(product);
     }
-
-    //Shopping cart
-    ShoppingCartListener shoppingCartListener = new ShoppingCartListener() {
-        @Override
-        public void shoppingCartChanged(CartEvent cartEvent) {
-            //do something
-        }
-    };
-
+    public List<ShoppingItem> getShoppingList(){
+        return shoppingCart.getItems();
+    }
+    public List<Product> searchProducts(String searchText){
+        return iMatDataHandler.findProducts(searchText);
+    }
     public void addToCart(Product product){
         if(!checkShoppingItem(product)){
             ShoppingItem shoppingItem = new ShoppingItem(product);
             shoppingItem.setAmount(1.0);
             shoppingCart.addItem(shoppingItem);
-            System.out.println(shoppingItem.getAmount());
+
         }
+    }
+
+    public void removeAllProducts(){
+        shoppingCart.clear();
+    }
+    public void removeProductFromCart(Product product){
+        int index = getShoppingItemIndex(product);
+        shoppingCart.removeItem(index);
     }
     public boolean removeFromCart(Product product){
         int index = getShoppingItemIndex(product);
@@ -54,8 +66,6 @@ public class IMatBackendController {
         }
         return false;
     }
-
-
     public void printShoppingList(){
         for (int i = 0; i <= shoppingCart.getItems().size() - 1; i++) {
             System.out.println("Product: " + shoppingCart.getItems().get(i).getProduct().getName() + ". Amount: " + shoppingCart.getItems().get(i).getAmount());
@@ -84,7 +94,7 @@ public class IMatBackendController {
         }
         return false;
     }
-    private int getShoppingItemIndex(Product product){
+    public int getShoppingItemIndex(Product product){
 
         if(shoppingCart.getItems().isEmpty()){ //check if shopping cart is empty
             return -1;
@@ -96,10 +106,9 @@ public class IMatBackendController {
         }
         return -1;
     }
-    //end shopping cart
-
-    //My profile
-
+    public int getTotalValueOfProducts(){
+        return (int) shoppingCart.getTotal();
+    }
 
     public void addOrderTest(){
         System.out.println("Testing...");

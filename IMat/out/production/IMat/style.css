@@ -1,6 +1,6 @@
 .MenuButton {
 	-fx-background-color:#f47e7a;
-	-fx-background-radius: 28px;
+	-fx-background-radius: 40px;
 	-fx-font-family:Arial;
 	-fx-font-size:30px;
 	-fx-text-decoration:none;
@@ -16,11 +16,9 @@
 	-fx-background-radius: 28px;
 	-fx-border-color:#f47e7a;
 	-fx-border-width:5px;
-	-fx-border-radius:28px;
-	/*-fx-display:inline-block;*/
-	-fx-cursor:pointer;
-	-fx-font-color:#ffffff;
-	-fx-font-family:Arial;
+	-fx-border-radius:35px;
+	-fx-cursor:text;
+	-fx-text-fill:white;
 	-fx-font-size:30px;
 	-fx-text-decoration:none;
 }
@@ -67,7 +65,7 @@
 }
 .detailedViewAmountofProductsLabel{
     -fx-border-color:black;
-    -fx-border-width: 3px 3px 3px 3px;
+    -fx-border-width: 1px 1px 1px 1px;
     -fx-border-radius: 100px;
     -fx-alignment:center;
     -fx-font-size:30px;
@@ -87,5 +85,55 @@
 
 .ListOfBuys {
     -fx-border-color:#707070;
-    -fx-border-width:1px;
+    -fx-border-width: 0px 0px 1px 0px;
 }
+.StandardLabel{
+    -fx-background-color:white;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-color:black;
+}
+.RadioButtonSelected{
+    -fx-cursor:hand;
+    -fx-background-color:#f47e7a;
+    -fx-background-radius: 40px;
+    -fx-font-size:25px;
+    -fx-alignment:center;
+    -fx-padding:20px;
+
+}
+.RadioButtonSelected .radio{
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-background-color: #f47e7a;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+}
+
+.RadioButtonSelected .dot{
+    -fx-background-radius:15px;
+    -fx-padding:8px;
+    -fx-background-color:white;
+}
+.RadioButtonNotSelected{
+    -fx-cursor:hand;
+    -fx-background-color:white;
+    -fx-background-radius: 40px;
+    //-fx-border-color: #f47e7a;
+    -fx-font-size:25px;
+    -fx-alignment:center;
+    -fx-padding:20px;
+    -fx-text-fill: #f47e7a;
+}
+.RadioButtonNotSelected .radio{
+    -fx-border-width: 2px;
+    -fx-border-color: #f47e7a;
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-padding: 5px;
+}
+
+.checkoutScrollPane{
+    -fx-background-color:white;
+    -fx-border-color:black;
+}
+
