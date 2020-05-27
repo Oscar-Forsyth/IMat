@@ -68,4 +68,37 @@ public class MyPagesTextField extends AnchorPane {
             postalCode.setText(parentController.getPostCode());
         }
     }
+    public boolean check() {
+        int x=0;
+        if (parentController.getFirstname().isEmpty()) {
+            prename.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  prename.setStyle("-fx-border-color: black ; ");}
+        if (parentController.getLastname().isEmpty()) {
+            surname.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  surname.setStyle("-fx-border-color: black ; ");}
+        if (parentController.getAddress().isEmpty()) {
+            adress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  adress.setStyle("-fx-border-color: black ; ");}
+        if (parentController.getEmail().isEmpty()) {
+            email.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  email.setStyle("-fx-border-color: black ; ");}
+        if (parentController.getPhoneNumber().isEmpty()) {
+            phonenumber.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  phonenumber.setStyle("-fx-border-color: black ; ");}
+        if (parentController.getPostCode().isEmpty()) {
+            postalCode.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  postalCode.setStyle("-fx-border-color: black ; ");}
+        return (x==0);}
 }

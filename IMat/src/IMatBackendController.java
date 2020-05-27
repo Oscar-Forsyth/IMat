@@ -41,9 +41,10 @@ public class IMatBackendController {
             ShoppingItem shoppingItem = new ShoppingItem(product);
             shoppingItem.setAmount(1.0);
             shoppingCart.addItem(shoppingItem);
-
+            System.out.println(shoppingItem.getAmount());
         }
-    }
+        }
+
 
     public void removeAllProducts(){
         shoppingCart.clear();
@@ -65,6 +66,9 @@ public class IMatBackendController {
             shoppingItem.setAmount(currentAmount - removeAmount);
         }
         return false;
+    }
+    public ShoppingCart getShoppingCart(){
+        return shoppingCart;
     }
     public void printShoppingList(){
         for (int i = 0; i <= shoppingCart.getItems().size() - 1; i++) {
@@ -109,9 +113,10 @@ public class IMatBackendController {
     public int getTotalValueOfProducts(){
         return (int) shoppingCart.getTotal();
     }
-
+    public void placeOrder(ShoppingCart shoppingCart){
+        iMatDataHandler.placeOrder(true);
+    }
     public void addOrderTest(){
-        System.out.println("Testing...");
         final ShoppingCart shoppingCart = iMatDataHandler.getShoppingCart();
         shoppingCart.addShoppingCartListener(new ShoppingCartListener() {
             public void shoppingCartChanged(CartEvent evt) {

@@ -136,4 +136,12 @@
     -fx-background-color:white;
     -fx-border-color:black;
 }
+.shoppingBagButtons{
+    -fx-background-color:#f47e7a;
+	-fx-background-radius: 82px;
+	-fx-font-family:Arial;
+	-fx-font-size:50px;
+	-fx-text-decoration:none;
+
+}
 

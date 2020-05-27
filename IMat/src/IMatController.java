@@ -19,25 +19,26 @@ import java.io.IOException;
 
 import java.net.URL;
 import java.security.Key;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
 import javafx.scene.layout.Pane;
-import se.chalmers.cse.dat216.project.Order;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ProductCategory;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import javafx.util.converter.DateTimeStringConverter;
+import se.chalmers.cse.dat216.project.*;
 
 
 public class IMatController implements Initializable {
-
     private Map<String, ProductListItem> productListItemMap = new HashMap<String, ProductListItem>();
     private Map<String, CheckoutProduct> checkoutProductListItemMap = new HashMap<String, CheckoutProduct>();
     private List<PreviousBuyItem> orders = new ArrayList<>();
-
+    private List<ShoppingBagItem> shoppingBagItems = new ArrayList<>();
+    private List<ShoppingItem> latestbuy = new ArrayList<>();
     private StringBuilder products = new StringBuilder();
     private StringBuilder prices = new StringBuilder();
-
+    private StringBuilder amounts = new StringBuilder();
+    private Order order;
     private double price = 0;
 
     private PreviousBuyItem previousBuyItem;
@@ -45,11 +46,17 @@ public class IMatController implements Initializable {
     private ProductListItem productListItem;
     private MyPagesTextField myPagesTextField;
     private EditCreditsTextField editCreditsTextField;
+    private MyPagesTextField PayTextField;
+    private EditCreditsTextField PayCreditsTextField;
     private Product currentProduct;
+    private DatePicker datePicker;
+    private DatePicker datePicker1;
 
     private final ToggleGroup radioButtonGroup = new ToggleGroup();
 
     @FXML private TextField searchTextField;
+    @FXML private TextField cvcTextField;
+    @FXML private TextField timeTextField;
 
     @FXML private RadioButton homeDeliveryRadioButton;
     @FXML private RadioButton pickupAtStoreRadioButton;
@@ -57,6 +64,7 @@ public class IMatController implements Initializable {
     @FXML private Button editCreditsButton;
     @FXML private Button detailedViewAddtoCartButton;
     @FXML private Button searchButton;
+    @FXML private Button buyAgainButton;
 
     @FXML private Label CategoryLabel;
     @FXML private Label fruitSideMenu;
@@ -75,6 +83,7 @@ public class IMatController implements Initializable {
     @FXML private Label totalPriceLabel;
     @FXML private Label pricesLabel;
     @FXML private Label productsLabel;
+    @FXML private Label amountLabel;
     @FXML private Label detailedViewAmountOfProductsLabel;
     @FXML private Label checkoutTotalPrice;
     @FXML private Label checkoutTotalPriceNoTax;
@@ -86,11 +95,16 @@ public class IMatController implements Initializable {
     @FXML private Label thankYouScreenTax;
     @FXML private Label thankYouScreenPriceNoTax;
     @FXML private Label thankYouScreenTotalPayed;
+    @FXML private Label totalPriceShoppingLabel;
+
 
 
     @FXML private FlowPane listItemsFlowPane;
     @FXML private FlowPane previousBuyFlowPane;
     @FXML private FlowPane textfieldFlowPane;
+    @FXML private FlowPane shoppingBagFlowPane;
+    @FXML private FlowPane PayTextFieldFlowPane;
+    @FXML private FlowPane PayCreditsFlowPane;
     @FXML private FlowPane homePageListItemsFlowPane;
     @FXML private FlowPane checkOutProductListPane;
     @FXML private FlowPane thankYouComeAgain;
@@ -103,13 +117,16 @@ public class IMatController implements Initializable {
     @FXML private AnchorPane PreviousOrderAnchorPane;
     @FXML private AnchorPane detailedViewPane;
     @FXML private AnchorPane shadowPane;
+    @FXML private AnchorPane shadowPane1;
     @FXML private AnchorPane ProductListItemAnchorPane;
     @FXML private AnchorPane detailedViewAmountSelectorPane;
     @FXML private AnchorPane searchPane;
     @FXML private AnchorPane checkoutPane;
     @FXML private AnchorPane homeDeliverySecondStepPane;
     @FXML private AnchorPane pickupAtStoreSecondStepPane;
+    @FXML private AnchorPane PayStepThreeAnchorPane;
     @FXML private AnchorPane thankYouScreen;
+    @FXML private AnchorPane ShoppingBagAnchorPane;
 
 
     @FXML private ImageView exitViewPaneImage;
@@ -129,7 +146,6 @@ public class IMatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imatbc = new IMatBackendController();
-
         pickupAtStoreRadioButton.setToggleGroup(radioButtonGroup);
         homeDeliveryRadioButton.setToggleGroup(radioButtonGroup);
         homeDeliveryRadioButton.setSelected(true);
@@ -144,11 +160,7 @@ public class IMatController implements Initializable {
             CheckoutProduct checkoutProduct = new CheckoutProduct(this,product);
             checkoutProductListItemMap.put(product.getName(), checkoutProduct);
         }
-        for(Order order: imatbc.getOrders()){
-            PreviousBuyItem previousBuyItem = new PreviousBuyItem(order,this);
-            orders.add(previousBuyItem);
-        }
-        Collections.reverse(orders);
+
 
         updateOrderList();
         textfieldFlowPane.getChildren().clear();
@@ -159,8 +171,16 @@ public class IMatController implements Initializable {
         setStartingProducts();
         homePagePaneToFront();
         openDatePicker();
+        updateShoppingBag();
+        updatePayStepThree();
 
-
+        TextField tf = timeTextField;
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        try {
+            tf.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("12:30")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void thankYouForYourPurchase(){
@@ -181,7 +201,7 @@ public class IMatController implements Initializable {
         }
         thankYouScreenTransportFee.setText(transportFee + " kr");
         thankYouScreenTotalPayed.setText(transportFee + imatbc.getTotalValueOfProducts() + 15 + " kr");
-        imatbc.removeAllProducts();
+
 
 
     }
@@ -192,20 +212,21 @@ public class IMatController implements Initializable {
         else if(pickupAtStoreRadioButton.isSelected()){
             pickupAtStoreSecondStepPane.toFront();
             comboBoxStores.getItems().addAll(
-                    "Johannaberg",
+                    "Johanneberg",
                     "Nolvik",
                     "Olofstorp",
                     "Torslanda"
             );
         }
+        System.out.println(imatbc.getShoppingCart().getItems().size());
     }
     public void openDatePicker(){
-        DatePicker datePicker = new DatePicker();
+        datePicker = new DatePicker();
         datePicker.setStyle("-fx-font-size:35px");
         datePickerPane.getChildren().clear();
         datePickerPane.getChildren().add(datePicker);
 
-        DatePicker datePicker1 = new DatePicker();
+        datePicker1 = new DatePicker();
         datePicker1.setStyle("-fx-font-size:35px");
         datePickerPanePickUpAtStore.getChildren().clear();
         datePickerPanePickUpAtStore.getChildren().add(datePicker1);
@@ -232,7 +253,8 @@ public class IMatController implements Initializable {
         checkOutProductListPane.getChildren().clear();
         checkoutPane.toFront();
         lonelyPane.toBack();
-        checkoutTotalPrice.setText(imatbc.getTotalValueOfProducts() + " kr");
+        closeShoppingBag();
+        checkoutTotalPrice.setText(imatbc.getShoppingCart().getTotal() + " kr");
         if(imatbc.getShoppingList().isEmpty()){
             lonelyPane.toFront();
         }
@@ -242,8 +264,8 @@ public class IMatController implements Initializable {
                 checkoutProductListItemMap.get(item.getProduct().getName()).setLabels();
             }
         }
-        int tax = (int) (imatbc.getTotalValueOfProducts() * 0.12);
-        checkoutTotalPriceNoTax.setText(imatbc.getTotalValueOfProducts() - tax + " kr");
+        int tax = (int) (imatbc.getShoppingCart().getTotal() * 0.12);
+        checkoutTotalPriceNoTax.setText(imatbc.getShoppingCart().getTotal() - tax + " kr");
         checkoutTax.setText(tax + " kr");
         if(homeDeliveryRadioButton.isSelected()){
             transportFee = 49;
@@ -277,6 +299,48 @@ public class IMatController implements Initializable {
         myPagesTextField.updateCustomerInfo();
         MyPagesAnchorPane.toFront();
     }
+    @FXML private void goToPayStepThree(){
+        if(checkinfo()) {
+            cvcTextField.clear();
+            PayStepThreeAnchorPane.toFront();
+        }
+    }
+    private boolean checkinfo(){
+        int x=0;
+        if(homeDeliveryRadioButton.isSelected()){
+            if(datePicker.getEditor().getText().isEmpty()){
+                  datePicker.getEditor().setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+                  x++;
+             }
+            else {
+               datePicker.getEditor().setStyle("-fx-border-width: 0px ;");
+            }
+            if(timeTextField.getText().isEmpty()){
+                timeTextField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+                x++;
+              }
+             else {
+               timeTextField.setStyle("-fx-border-width: 0px ;");
+             }
+        }
+        if(pickupAtStoreRadioButton.isSelected()){
+            if(datePicker1.getEditor().getText().isEmpty()){
+                datePicker1.getEditor().setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+                x++;
+            }
+            else {
+                datePicker1.getEditor().setStyle("-fx-border-width: 0px ;");
+            }
+            if(comboBoxStores.getValue()==null){
+                comboBoxStores.setStyle("-fx-border-color: red ;");
+                x++;
+            }
+            else{
+                comboBoxStores.setStyle("-fx-border-width: 0px ;");
+            }
+        }
+    return (x==0);}
+
     public void detailedViewAmountSelectorPaneToFront(){
         detailedViewAmountSelectorPane.toFront();
     }
@@ -305,8 +369,10 @@ public class IMatController implements Initializable {
     public void PreviousOrderToFront(Order order){
         PreviousOrderAnchorPane.toFront();
         productsLabel.setText(String.valueOf(getProductsFromOrder(order)));
+        amountLabel.setText(String.valueOf(getAmount(order)));
         pricesLabel.setText(String.valueOf(getProductPrices(order)));
         totalPriceLabel.setText(String.valueOf(getOrderPrice(order)));
+        this.order=order;
     }
 
     public void homeDeliveryButton(){
@@ -378,8 +444,22 @@ public class IMatController implements Initializable {
         }
         return prices;
     }
+    private StringBuilder getAmount(Order order){
+        for(ShoppingItem shoppingItem: order.getItems()){
+            amounts.append(shoppingItem.getAmount());
+            amounts.append(System.getProperty("line.separator"));
+        }
+        return amounts;
+    }
 
     private void updateOrderList()  {
+        orders.clear();
+        for(Order order: imatbc.getOrders()){
+            PreviousBuyItem previousBuyItem = new PreviousBuyItem(order,this);
+            orders.add(previousBuyItem);
+        }
+        Collections.reverse(orders);
+
         previousBuyFlowPane.getChildren().clear();
         for(PreviousBuyItem previousBuyItem : orders){
             previousBuyFlowPane.getChildren().add(previousBuyItem);
@@ -396,6 +476,14 @@ public class IMatController implements Initializable {
             personalInformationSavedLabel.setVisible(true);
         }
 
+    }
+    @FXML private void goBack() {
+        if (homeDeliveryRadioButton.isSelected()){
+            homeDeliverySecondStepPane.toFront();
+        }
+        else{
+            pickupAtStoreSecondStepPane.toFront();
+        }
     }
     @FXML private void openEditCredits() {
 
@@ -422,7 +510,93 @@ public class IMatController implements Initializable {
         price=0;
     }
     @FXML private void buyOrderAgain(){
-        //Lägg till i varukorgen TODO
+        for(ShoppingItem shoppingItem: order.getItems())
+            imatbc.getShoppingCart().addItem(shoppingItem);
+        buyAgainButton.setText("Tillagd");
+    }
+    @FXML private void completeBuy(){
+        System.out.println(imatbc.getShoppingCart().getItems().size());
+        PayTextField.saveCustomerInfo();
+        PayCreditsTextField.saveCreditsInfo();
+        PayCreditsTextField.check();PayTextField.check();checkCVC();
+        if((PayCreditsTextField.check()) && (PayTextField.check()) && (checkCVC())){
+            PayStepThreeAnchorPane.toBack();
+            for(ShoppingItem shoppingItem: imatbc.getShoppingCart().getItems()){
+                productListItemMap.get(shoppingItem.getProduct().getName()).listItemAddToCartButtonToFront();
+            }
+            thankYouForYourPurchase();
+            imatbc.placeOrder(imatbc.getShoppingCart());
+            updateOrderList();
+
+
+
+        }
+
+    }
+    @FXML private void openShoppingBag(){
+        updateShoppingBag();
+        shadowPane1.toFront();
+        ShoppingBagAnchorPane.toFront();
+    }
+    @FXML private void closeShoppingBag(){
+        shadowPane1.toBack();
+        ShoppingBagAnchorPane.toBack();
+    }
+    private void updatePayStepThree()  {
+        PayTextFieldFlowPane.getChildren().clear();
+        PayTextField= new MyPagesTextField(this);
+        PayTextFieldFlowPane.getChildren().add(PayTextField);
+        PayCreditsFlowPane.getChildren().clear();
+        PayCreditsTextField = new EditCreditsTextField(this);
+        PayCreditsFlowPane.getChildren().add(PayCreditsTextField);
+    }
+    public boolean checkCVC(){
+        if(cvcTextField.getText().isEmpty()){
+            cvcTextField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            return false; }
+        else{
+            cvcTextField.setStyle("-fx-border-color: black ; ");
+        }
+        return true;}
+
+    private void updateShoppingBag()  {
+        shoppingBagItems.clear();
+        for(ShoppingItem shoppingItem: imatbc.getShoppingCart().getItems()){
+            ShoppingBagItem shoppingBagItem = new ShoppingBagItem(shoppingItem,this);
+            shoppingBagItems.add(shoppingBagItem);
+        }
+        Collections.reverse(shoppingBagItems);
+
+        shoppingBagFlowPane.getChildren().clear();
+        for(ShoppingBagItem shoppingBagItem : shoppingBagItems){
+            shoppingBagFlowPane.getChildren().add(shoppingBagItem);
+        }
+
+            totalPriceShoppingLabel.setText(String.valueOf(imatbc.getShoppingCart().getTotal()+" kr"));
+
+    }
+    protected void deleteShoppingItem(ShoppingBagItem shoppingBagItemRemove,ShoppingItem shoppingItem){
+        shoppingBagItems.remove(shoppingBagItemRemove);
+        imatbc.getShoppingCart().removeItem(shoppingItem);
+        totalPriceShoppingLabel.setText(String.valueOf(imatbc.getShoppingCart().getTotal() + " kr"));
+        shoppingBagFlowPane.getChildren().clear();
+        for(ShoppingBagItem shoppingBagItem : shoppingBagItems){
+            shoppingBagFlowPane.getChildren().add(shoppingBagItem);
+        }
+        productListItemMap.get(shoppingItem.getProduct().getName()).listItemAddToCartButtonToFront();
+    }
+    protected void changeProductListAmount(ShoppingItem shoppingItem, Boolean b){
+        if (b) {
+            productListItemMap.get(shoppingItem.getProduct().getName()).addToCart();
+            totalPriceShoppingLabel.setText(String.valueOf(imatbc.getShoppingCart().getTotal() + " kr"));
+        }
+        else{
+            productListItemMap.get(shoppingItem.getProduct().getName()).removeFromCart();
+            totalPriceShoppingLabel.setText(String.valueOf(imatbc.getShoppingCart().getTotal()+" kr"));
+
+        }
+
+
     }
 
     public Image getImage(Product product){
@@ -647,7 +821,7 @@ public class IMatController implements Initializable {
         exitViewPaneImage.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
                 "img/icon_close.png")));
         if(onHomePage){
-            homePagePaneToFront();
+            detailedViewPane.toBack();
         }
         else{
             navigationPaneToFront();
