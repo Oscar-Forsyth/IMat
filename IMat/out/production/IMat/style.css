@@ -4,11 +4,10 @@
 	-fx-font-family:Arial;
 	-fx-font-size:30px;
 	-fx-text-decoration:none;
-
+	-fx-cursor:hand;
 }
 .MenuButton:hover {
 	-fx-background-color:#fa4946;
-	-fx-cursor:hand;
 }
 
 .Searchbar {
@@ -136,4 +135,37 @@
     -fx-background-color:white;
     -fx-border-color:black;
 }
-
+.shoppingBagButtons{
+    -fx-background-color:#f47e7a;
+	-fx-background-radius: 82px;
+	-fx-font-family:Arial;
+	-fx-font-size:35px;
+	-fx-text-decoration:none;
+	-fx-cursor:hand;
+}
+.shoppingBagButtons:hover{
+    -fx-background-color:#fa4946;
+}
+.ConfirmPayment{
+    -fx-background-color: #d6efd2;
+	-fx-background-radius: 40px;
+	-fx-font-family:Arial;
+	-fx-font-size:50px;
+	-fx-text-fill:black;
+	-fx-text-decoration:none;
+	-fx-cursor:hand;
+}
+.ConfirmPayment:hover{
+    -fx-background-color:#86d17b;
+}
+.CheckOutButton{
+    -fx-background-color:#f47e7a;
+	-fx-background-radius: 40px;
+	-fx-font-family:Arial;
+	-fx-font-size:50px;
+	-fx-text-decoration:none;
+	-fx-cursor:hand;
+}
+.CheckOutButton:hover{
+    -fx-background-color:#fa4946;
+}

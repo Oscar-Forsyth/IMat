@@ -51,17 +51,16 @@ public class ProductListItem extends AnchorPane {
         addToCart();
     }
     public void addToCart(){
-        parentController.updateLabel();
         imatbc.addToCart(product);
+        parentController.updateLabel();
         updateLabel();
-        imatbc.printShoppingList();
 
     }
     public void removeFromCart(){
         if(imatbc.removeFromCart(product)){
             listItemAddToCartButtonToFront();
         }
-
+        parentController.updateLabel();
         updateLabel();
     }
     public void updateLabel(){
@@ -69,6 +68,10 @@ public class ProductListItem extends AnchorPane {
             amountSelectorPaneToFront();
             listItemAmountOfProductsLabel.setText(imatbc.getAmount(product) + "");
         }
+        else{
+            listItemAddToCartButton.toFront();
+        }
+
     }
     public Product getProduct(){
         return product;

@@ -2,6 +2,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,19 +34,18 @@ public class MyPagesTextField extends AnchorPane {
         this.parentController = iMatController;
 
         updateCustomerInfo();
-
+        inputControl();
 
     }
 
      public void saveCustomerInfo(){
-
-           parentController.setFirstName(prename.getText());
+        parentController.setFirstName(prename.getText());
            parentController.setLastName(surname.getText());
             parentController.setAddress(adress.getText());
             parentController.setEmail(email.getText());
             parentController.setPhoneNumber(phonenumber.getText());
             parentController.setPostCode(postalCode.getText());
-         System.out.println(parentController.getFirstname());
+         check();
 
     }
     public void updateCustomerInfo(){
@@ -67,5 +67,81 @@ public class MyPagesTextField extends AnchorPane {
         if(parentController.getPostCode()!=null){
             postalCode.setText(parentController.getPostCode());
         }
+    }
+    public boolean check() {
+        int x=0;
+        if (prename.getText().isEmpty()) {
+            prename.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  prename.setStyle("-fx-border-color: black ; ");}
+        if (surname.getText().isEmpty()) {
+            surname.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  surname.setStyle("-fx-border-color: black ; ");}
+        if (adress.getText().isEmpty()) {
+            adress.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  adress.setStyle("-fx-border-color: black ; ");}
+        if (!((email.getText().contains("@"))&& ((email.getText().contains("."))))) {
+            email.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  email.setStyle("-fx-border-color: black ; ");}
+        if (phonenumber.getText().isEmpty() || phonenumber.getText().length() != 10) {
+            phonenumber.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  phonenumber.setStyle("-fx-border-color: black ; ");}
+        if (postalCode.getText().isEmpty()) {
+            postalCode.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
+            x++;
+        }
+        else {  postalCode.setStyle("-fx-border-color: black ; ");}
+        return (x==0);
+    }
+    private void inputControl(){
+
+        postalCode.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                postalCode.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        phonenumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                phonenumber.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        postalCode.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            int count = newText.length();
+            for (char c : newText.toCharArray()) {
+                if (c == ' ') {
+                    count--;
+                }
+            }
+            if (count > 5) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        phonenumber.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            int count = newText.length();
+            for (char c : newText.toCharArray()) {
+                if (c == ' ') {
+                    count--;
+                }
+            }
+            if (count > 12) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
     }
 }
