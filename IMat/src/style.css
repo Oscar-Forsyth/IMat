@@ -144,4 +144,8 @@
 	-fx-text-decoration:none;
 
 }
+.shoppingBagButtons:hover {
+	-fx-background-color:#fa4946;
+	-fx-cursor:hand;
+}
 

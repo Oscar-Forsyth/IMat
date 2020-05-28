@@ -2,6 +2,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -33,7 +34,7 @@ public class EditCreditsTextField extends AnchorPane {
         this.parentController = iMatController;
 
         updateCreditsInfo();
-
+        inputControl();
     }
     public void saveCreditsInfo(){
         if(!cardNumber.getText().isEmpty())
@@ -52,7 +53,7 @@ public class EditCreditsTextField extends AnchorPane {
         if(validYear.getText().equals("")){
             parentController.setValidYear(0);
         }
-
+    check();
     }
     public void updateCreditsInfo(){
         if(parentController.getCardNumber()!=null){
@@ -68,20 +69,72 @@ public class EditCreditsTextField extends AnchorPane {
     }
     public boolean check(){
         int x=0;
-        if(parentController.getCardNumber().isEmpty()){
+        if(cardNumber.getText().isEmpty()){
             cardNumber.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  cardNumber.setStyle("-fx-border-color: black ; ");}
-        if((parentController.getValidMonth()<=0) || ( parentController.getValidMonth()>12) ){
+        if((Integer.parseInt(validMonth.getText()) <=0) || ( Integer.parseInt(validMonth.getText())>12) ){
             validMonth.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  validMonth.setStyle("-fx-border-color: black ; ");}
-        if(parentController.getValidYear()<2020){
+        if((Integer.parseInt(validYear.getText())<2020)){
             validYear.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  validYear.setStyle("-fx-border-color: black ; ");}
         return (x==0);}
+
+    private void inputControl(){
+
+        validYear.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                validYear.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        validMonth.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                validMonth.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        cardNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                    cardNumber.setText(newValue.replaceAll("[^\\d\\s]", ""));
+
+            }
+        });
+        validYear.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 4) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        validMonth.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 2) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        cardNumber.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            int count = newText.length();
+            for (char c : newText.toCharArray()) {
+                if (c == ' ') {
+                    count--;
+                }
+            }
+            if (count > 16) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+    }
 }

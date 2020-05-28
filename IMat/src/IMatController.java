@@ -96,7 +96,7 @@ public class IMatController implements Initializable {
     @FXML private Label thankYouScreenPriceNoTax;
     @FXML private Label thankYouScreenTotalPayed;
     @FXML private Label totalPriceShoppingLabel;
-
+    @FXML private Label buyAgainConfirmationLabel;
 
 
     @FXML private FlowPane listItemsFlowPane;
@@ -174,13 +174,8 @@ public class IMatController implements Initializable {
         updateShoppingBag();
         updatePayStepThree();
 
-        TextField tf = timeTextField;
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        try {
-            tf.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(format), format.parse("12:30")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        setupTimeTextField();
+
     }
 
     public void thankYouForYourPurchase(){
@@ -302,20 +297,23 @@ public class IMatController implements Initializable {
     @FXML private void goToPayStepThree(){
         if(checkinfo()) {
             cvcTextField.clear();
+            PayTextField.updateCustomerInfo();
+            PayCreditsTextField.updateCreditsInfo();
             PayStepThreeAnchorPane.toFront();
         }
     }
     private boolean checkinfo(){
         int x=0;
         if(homeDeliveryRadioButton.isSelected()){
-            if(datePicker.getEditor().getText().isEmpty()){
+            if(datePicker.getEditor().getText().length()!=10){
                   datePicker.getEditor().setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
                   x++;
              }
             else {
                datePicker.getEditor().setStyle("-fx-border-width: 0px ;");
             }
-            if(timeTextField.getText().isEmpty()){
+
+            if((timeTextField.getText().isEmpty()) ||((Integer.parseInt(timeTextField.getText().substring(0,2))>=24)) ||((Integer.parseInt(timeTextField.getText().substring(3,5))>=60))){
                 timeTextField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
                 x++;
               }
@@ -324,7 +322,7 @@ public class IMatController implements Initializable {
              }
         }
         if(pickupAtStoreRadioButton.isSelected()){
-            if(datePicker1.getEditor().getText().isEmpty()){
+            if(datePicker1.getEditor().getText().length()!=10){
                 datePicker1.getEditor().setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
                 x++;
             }
@@ -387,6 +385,69 @@ public class IMatController implements Initializable {
         homeDeliveryRadioButton.getStyleClass().add("RadioButtonNotSelected");
         goToCheckOut();
     }
+    private void setupTimeTextField(){
+       timeTextField.setText("11:30");
+        timeTextField.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 5) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+
+        timeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d:*")) {
+                timeTextField.setText(newValue.replaceAll("[^\\d\\s:]", ""));
+
+            }
+        });
+
+        datePicker.getEditor().setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 10) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        datePicker.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d-*")) {
+                datePicker.getEditor().setText(newValue.replaceAll("[^\\d\\s-]", ""));
+
+            }
+        });
+        datePicker1.getEditor().setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 10) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        datePicker1.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d-*")) {
+                datePicker1.getEditor().setText(newValue.replaceAll("[^\\d\\s-]", ""));
+
+            }
+        });
+
+        cvcTextField.setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+            String newText = change.getControlNewText();
+            if (newText.length() > 3) {
+                return null ;
+            } else {
+                return change ;
+            }
+        }));
+        cvcTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                cvcTextField.setText(newValue.replaceAll("[^\\d]", ""));
+
+            }
+        });
+
+    }
 
     public void search(){
         checkColor();
@@ -445,6 +506,7 @@ public class IMatController implements Initializable {
         return prices;
     }
     private StringBuilder getAmount(Order order){
+        amounts.setLength(0);
         for(ShoppingItem shoppingItem: order.getItems()){
             amounts.append(shoppingItem.getAmount());
             amounts.append(System.getProperty("line.separator"));
@@ -467,13 +529,14 @@ public class IMatController implements Initializable {
 
     }
     @FXML private void saveCustomerInfoFromMyPages(){
-        if(myPagesTextField != null){
+        if((myPagesTextField != null)&& myPagesTextField.check()){
             myPagesTextField.saveCustomerInfo();
             personalInformationSavedLabel.setVisible(true);
         }
-        if(editCreditsTextField != null){
-            editCreditsTextField.saveCreditsInfo();
-            personalInformationSavedLabel.setVisible(true);
+        if((editCreditsTextField != null)){
+            if(editCreditsTextField.check())
+                editCreditsTextField.saveCreditsInfo();
+                personalInformationSavedLabel.setVisible(true);
         }
 
     }
@@ -486,7 +549,7 @@ public class IMatController implements Initializable {
         }
     }
     @FXML private void openEditCredits() {
-
+        personalInformationSavedLabel.setVisible(false);
         if (textfieldFlowPane.getChildren().contains(editCreditsTextField)){
             textfieldFlowPane.getChildren().remove(editCreditsTextField);
             textfieldFlowPane.getChildren().add(this.myPagesTextField);
@@ -507,12 +570,25 @@ public class IMatController implements Initializable {
         PreviousOrderAnchorPane.toBack();
         prices.setLength(0);
         products.setLength(0);
+        buyAgainButton.setText("Köp igen");
         price=0;
+        buyAgainConfirmationLabel.setVisible(false);
     }
     @FXML private void buyOrderAgain(){
+    if(buyAgainButton.getText().equals("Ta bort")){
+        buyAgainButton.setText("Köp igen");
+        for(ShoppingItem shoppingItem: order.getItems()) {
+            imatbc.getShoppingCart().removeItem(shoppingItem);
+        }
+        buyAgainConfirmationLabel.setText("Köpet är borttaget");
+    }
+    else{
         for(ShoppingItem shoppingItem: order.getItems())
             imatbc.getShoppingCart().addItem(shoppingItem);
-        buyAgainButton.setText("Tillagd");
+        buyAgainButton.setText("Ta bort");
+        buyAgainConfirmationLabel.setText("Köpet är tillagt i varukorgen!");
+        buyAgainConfirmationLabel.setVisible(true);
+    }
     }
     @FXML private void completeBuy(){
         System.out.println(imatbc.getShoppingCart().getItems().size());
@@ -520,6 +596,8 @@ public class IMatController implements Initializable {
         PayCreditsTextField.saveCreditsInfo();
         PayCreditsTextField.check();PayTextField.check();checkCVC();
         if((PayCreditsTextField.check()) && (PayTextField.check()) && (checkCVC())){
+            PayCreditsTextField.saveCreditsInfo();
+            PayTextField.saveCustomerInfo();
             PayStepThreeAnchorPane.toBack();
             for(ShoppingItem shoppingItem: imatbc.getShoppingCart().getItems()){
                 productListItemMap.get(shoppingItem.getProduct().getName()).listItemAddToCartButtonToFront();
@@ -527,8 +605,6 @@ public class IMatController implements Initializable {
             thankYouForYourPurchase();
             imatbc.placeOrder(imatbc.getShoppingCart());
             updateOrderList();
-
-
 
         }
 
@@ -551,7 +627,7 @@ public class IMatController implements Initializable {
         PayCreditsFlowPane.getChildren().add(PayCreditsTextField);
     }
     public boolean checkCVC(){
-        if(cvcTextField.getText().isEmpty()){
+        if(cvcTextField.getText().length()!=3){
             cvcTextField.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             return false; }
         else{
