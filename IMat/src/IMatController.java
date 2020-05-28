@@ -55,6 +55,9 @@ public class IMatController implements Initializable {
     @FXML private Button buyAgainButton;
     @FXML private Button confirmPaymentButton;
     @FXML private Button shoppingBagButton;
+    @FXML private Button homePageRemoveButton;
+    @FXML private Button homePageAddButton;
+    @FXML private Button homePageAddToCartButton;
 
     @FXML private Label CategoryLabel;
     @FXML private Label fruitSideMenu;
@@ -89,6 +92,7 @@ public class IMatController implements Initializable {
     @FXML private Label amountOfProductsLabel;
     @FXML private Label amountOfProductsLabel2;
     @FXML private Label buyAgainConfirmationLabel;
+    @FXML private Label homePageAmountLabel;
 
 
 
@@ -121,6 +125,7 @@ public class IMatController implements Initializable {
     @FXML private AnchorPane thankYouScreen;
     @FXML private AnchorPane ShoppingBagAnchorPane;
     @FXML private AnchorPane headerPane;
+    @FXML private AnchorPane homePageAmountSelectorPane;
 
 
     @FXML private ImageView exitViewPaneImage;
@@ -134,6 +139,7 @@ public class IMatController implements Initializable {
 
     private int transportFee = 0;
     private boolean onHomePage = true;
+    Product earlGrey;
 
 
 
@@ -171,6 +177,7 @@ public class IMatController implements Initializable {
         updatePayStepThree();
         updateLabel();
         setupTimeTextField();
+        earlGrey = productListItemMap.get("Earl grey").getProduct();
 
 
 
@@ -219,6 +226,28 @@ public class IMatController implements Initializable {
         homePageListItemsFlowPane.getChildren().add(productListItemMap.get("Mango"));
         homePageListItemsFlowPane.getChildren().add(productListItemMap.get("Cola flaska"));
         homePageListItemsFlowPane.getChildren().add(productListItemMap.get("Ananas"));
+
+
+    }
+    private void updateFeaturedProduct(){
+        System.out.println(imatbc.getAmount(earlGrey));
+        if(imatbc.getAmount(earlGrey) <= 0){
+            homePageAddToCartButton.toFront();
+        }
+        else{
+            homePageAmountSelectorPane.toFront();
+            homePageAmountLabel.setText(imatbc.getAmount(earlGrey) + "");
+        }
+
+    }
+    public void addEarlGrey(){
+        imatbc.addToCart( earlGrey);
+        updateLabel();
+    }
+    public void removeEarlGrey(){
+        imatbc.removeFromCart(earlGrey);
+        updateLabel();
+
     }
     private void setStartingPrices(){
         imatbc.getSingleProduct("Mjölk").setPrice(7.0);
@@ -492,6 +521,9 @@ public class IMatController implements Initializable {
         for(Product product : imatbc.getProducts()){
             productListItemMap.get(product.getName()).updateLabel();
         }
+        updateFeaturedProduct();
+        imatbc.printShoppingList();
+
     }
     private double getOrderPrice(Order order){
         for(ShoppingItem shoppingItem: order.getItems()){
