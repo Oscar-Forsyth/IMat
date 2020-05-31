@@ -35,7 +35,7 @@ public class ProductListItem extends AnchorPane {
         this.product = product;
         ImagePreview.setImage(parentController.getImage(product));
         LabelPreview.setText(product.getName());
-        PricePreview.setText(product.getPrice()+ " " + product.getUnit());
+        PricePreview.setText((int)product.getPrice()+ " " + product.getUnit());
     }
      public void openDetailView(){
         parentController.detailedViewPaneToFront(product);

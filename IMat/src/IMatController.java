@@ -93,6 +93,7 @@ public class IMatController implements Initializable {
     @FXML private Label amountOfProductsLabel2;
     @FXML private Label buyAgainConfirmationLabel;
     @FXML private Label homePageAmountLabel;
+    @FXML private Label dumastehavaror;
 
 
 
@@ -130,6 +131,7 @@ public class IMatController implements Initializable {
 
     @FXML private ImageView exitViewPaneImage;
     @FXML private ImageView detailedViewProductImage;
+    @FXML private ImageView creditIcon;
 
     @FXML private Pane lonelyPane;
     @FXML private Pane datePickerPane;
@@ -195,19 +197,24 @@ public class IMatController implements Initializable {
         shoppingBagButton.setText("Varukorg");
     }
     public void nextStepPayment(){
-        if(homeDeliveryRadioButton.isSelected()){
-            homeDeliverySecondStepPane.toFront();
+        if(!imatbc.getShoppingList().isEmpty()){
+            if(homeDeliveryRadioButton.isSelected()){
+                homeDeliverySecondStepPane.toFront();
+            }
+            else if(pickupAtStoreRadioButton.isSelected()){
+                pickupAtStoreSecondStepPane.toFront();
+                comboBoxStores.getItems().addAll(
+                        "Johanneberg",
+                        "Nolvik",
+                        "Olofstorp",
+                        "Torslanda"
+                );
+            }
         }
-        else if(pickupAtStoreRadioButton.isSelected()){
-            pickupAtStoreSecondStepPane.toFront();
-            comboBoxStores.getItems().addAll(
-                    "Johanneberg",
-                    "Nolvik",
-                    "Olofstorp",
-                    "Torslanda"
-            );
+        else{
+            dumastehavaror.setVisible(true);
         }
-        System.out.println(imatbc.getShoppingCart().getItems().size());
+
     }
     public void openDatePicker(){
         datePicker = new DatePicker();
@@ -308,7 +315,7 @@ public class IMatController implements Initializable {
             else{
                 pris =imatbc.getTotalValueOfProducts() + 15;
             }
-            confirmPaymentButton.setText("Bekräfta Köp av: " + pris + " kr");
+            confirmPaymentButton.setText("Bekräfta köp av: " + pris + " kr");
 
         }
     }
@@ -352,6 +359,7 @@ public class IMatController implements Initializable {
         onHomePage = false;
         NavigationAnchorPane.toFront();
         ProductsAnchorPane.toFront();
+        updateLabel();
     }
     public void homePagePaneToFront(){
         onHomePage = true;
@@ -359,6 +367,7 @@ public class IMatController implements Initializable {
         setStartingProducts();
         NavigationAnchorPane.toFront();
         HomepageBigAnchorPane.toFront();;
+        updateLabel();
     }
     public void detailedViewAmountSelectorPaneToFront(){
         detailedViewAmountSelectorPane.toFront();
@@ -522,7 +531,7 @@ public class IMatController implements Initializable {
             productListItemMap.get(product.getName()).updateLabel();
         }
         updateFeaturedProduct();
-        imatbc.printShoppingList();
+        dumastehavaror.setVisible(false);
 
     }
     private double getOrderPrice(Order order){
@@ -553,6 +562,7 @@ public class IMatController implements Initializable {
         return amounts;
     }
     public void exitApplicaiton(){
+
         System.exit(0);
     }
     private void updateOrderList()  {
@@ -595,6 +605,7 @@ public class IMatController implements Initializable {
             textfieldFlowPane.getChildren().remove(editCreditsTextField);
             textfieldFlowPane.getChildren().add(this.myPagesTextField);
             editCreditsButton.setText("Redigera kortuppgifter");
+            creditIcon.setVisible(true);
 
         }
         else{
@@ -603,6 +614,7 @@ public class IMatController implements Initializable {
             textfieldFlowPane.getChildren().add(editCreditsTextField);
             this.editCreditsTextField=editCreditsTextField;
             editCreditsButton.setText("Tillbaka");
+            creditIcon.setVisible(false);
         }
     }
 

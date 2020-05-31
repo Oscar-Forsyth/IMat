@@ -6,59 +6,54 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="722.0" stylesheets="@style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="780.0" stylesheets="@style.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="phonenumber" layoutX="4.0" layoutY="188.0" prefHeight="75.0" prefWidth="722.0" promptText="Telefonnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="180.0">
+      <TextField fx:id="phonenumber" layoutX="107.0" layoutY="237.0" prefHeight="75.0" prefWidth="659.0" promptText="Telefonnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="237.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <TextField fx:id="adress" layoutY="277.0" prefHeight="75.0" prefWidth="472.0" promptText="Hemadress" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="270.0">
+      <TextField fx:id="adress" layoutX="104.0" layoutY="328.0" prefHeight="75.0" prefWidth="405.0" promptText="Hemadress" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="328.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <TextField fx:id="email" layoutY="102.0" prefHeight="75.0" prefWidth="722.0" promptText="E-mail" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
+      <TextField fx:id="email" layoutX="107.0" layoutY="132.0" prefHeight="75.0" prefWidth="659.0" promptText="E-mail" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="107.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="132.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <TextField fx:id="postalCode" layoutX="486.0" layoutY="277.0" prefHeight="75.0" prefWidth="240.0" promptText="Postnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
+      <TextField fx:id="postalCode" layoutX="516.0" layoutY="328.0" prefHeight="75.0" prefWidth="250.0" promptText="Postnummer" styleClass="Textfield" stylesheets="@style.css" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="328.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <TextField fx:id="surname" layoutX="365.0" layoutY="6.0" prefHeight="75.0" prefWidth="356.0" promptText="Efternamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TextField fx:id="surname" layoutX="433.0" layoutY="23.0" prefHeight="75.0" prefWidth="329.0" promptText="Efternamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="433.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="23.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <TextField fx:id="prename" layoutX="4.0" layoutY="6.0" prefHeight="75.0" prefWidth="356.0" promptText="Förnamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TextField fx:id="prename" layoutX="104.0" layoutY="23.0" prefHeight="75.0" prefWidth="322.0" promptText="Förnamn" styleClass="Textfield" stylesheets="@style.css" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="23.0">
          <font>
             <Font size="36.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="280.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="33.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="33.0">
          <image>
             <Image url="@img/close-up.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
-         <image>
-            <Image url="@img/close-up.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="33.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="33.0">
          <image>
             <Image url="@img/emails.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="644.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="644.0">
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="33.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="33.0">
          <image>
             <Image url="@img/signs.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="396.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="58.0" layoutX="33.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="692.0" AnchorPane.topAnchor="337.0">
          <image>
             <Image url="@img/housing.png" />
          </image>

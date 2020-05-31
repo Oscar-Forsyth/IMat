@@ -82,10 +82,10 @@ public class IMatBackendController {
         }
 
     }
-    public double getAmount(Product product){
+    public int getAmount(Product product){
         int index = getShoppingItemIndex(product);
         if(index != -1){
-            return shoppingCart.getItems().get(index).getAmount();
+            return (int) shoppingCart.getItems().get(index).getAmount();
 
         }
         return -1;

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <fx:root prefHeight="200.0" prefWidth="980.0" style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="listItemImage" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
@@ -24,7 +23,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="listItemProductAmountLabel" layoutX="613.0" layoutY="51.0" prefHeight="86.0" prefWidth="136.0" style="-fx-alignment: center;" text="1" textFill="#ff009b">
+      <Label fx:id="listItemProductAmountLabel" layoutX="613.0" layoutY="51.0" prefHeight="86.0" prefWidth="136.0" style="-fx-alignment: center;" text="1" textFill="#f47e7a">
          <font>
             <Font size="48.0" />
          </font>

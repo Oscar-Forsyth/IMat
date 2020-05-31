@@ -36,8 +36,8 @@ public class ShoppingBagItem extends AnchorPane {
 
         productLabel.setText(shoppingItem.getProduct().getName());
         productImage.setImage(iMatController.getImage(shoppingItem.getProduct()));
-        price.setText(shoppingItem.getTotal() +" kr");
-        listItemAmountOfProductsLabel.setText(String.valueOf(shoppingItem.getAmount()));
+        price.setText((int) shoppingItem.getTotal() +" kr");
+        listItemAmountOfProductsLabel.setText((int) shoppingItem.getAmount() + "");
 
 
     }
@@ -57,14 +57,12 @@ public class ShoppingBagItem extends AnchorPane {
     public void delete(){
         shoppingItem.setAmount(1);
         parentController.deleteShoppingItem(this,shoppingItem);
-
     }
     private void updateLabel(){
         productLabel.setText(shoppingItem.getProduct().getName());
         productImage.setImage(parentController.getImage(shoppingItem.getProduct()));
-        price.setText(shoppingItem.getTotal() +" kr");
-        listItemAmountOfProductsLabel.setText(String.valueOf(shoppingItem.getAmount()));
-        //System.out.println(imatbc.getAmount(product));
+        price.setText((int) shoppingItem.getTotal() +" kr");
+        listItemAmountOfProductsLabel.setText((int)shoppingItem.getAmount() + "");
 
     }
 

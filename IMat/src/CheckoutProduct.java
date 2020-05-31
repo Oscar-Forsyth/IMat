@@ -42,12 +42,12 @@ public class CheckoutProduct extends AnchorPane {
 
         listItemImage.setImage(parentController.getImage(product));
         listItemNameLabel.setText(product.getName());
-        listItemPriceLabel.setText(product.getPrice()+ " " + product.getUnit());
+        listItemPriceLabel.setText((int)product.getPrice()+ " " + product.getUnit());
 
 
     }
     public void setLabels(){
-        double totalPrice = product.getPrice() * imatbc.getAmount(product);
+        int totalPrice = (int) (product.getPrice() * imatbc.getAmount(product));
         listItemTotalPriceLabel.setText(totalPrice + " kr");
         listItemProductAmountLabel.setText(imatbc.getAmount(product)+ "");
     }

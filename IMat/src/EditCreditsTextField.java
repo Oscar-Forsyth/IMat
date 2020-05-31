@@ -71,22 +71,23 @@ public class EditCreditsTextField extends AnchorPane {
     }
     public boolean check(){
         int x=0;
-        if(parentController.getCardNumber().isEmpty()){
+        if(cardNumber.getText().isEmpty()){
             cardNumber.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  cardNumber.setStyle("-fx-border-color: black ; ");}
-        if((parentController.getValidMonth()<=0) || ( parentController.getValidMonth()>12) ){
+        if((Integer.parseInt(validMonth.getText())<=0) || (Integer.parseInt(validMonth.getText()) >12) ){
             validMonth.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  validMonth.setStyle("-fx-border-color: black ; ");}
-        if(parentController.getValidYear()<2020){
+        if(Integer.parseInt(validYear.getText())<20){
             validYear.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
             x++;
         }
         else {  validYear.setStyle("-fx-border-color: black ; ");}
         return (x==0);}
+
     private void inputControl(){
 
         validYear.textProperty().addListener((observable, oldValue, newValue) -> {

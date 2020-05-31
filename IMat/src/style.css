@@ -9,6 +9,19 @@
 .MenuButton:hover {
 	-fx-background-color:#fa4946;
 }
+.editButton{
+    -fx-background-color:#8c8c8c;
+	-fx-background-radius: 40px;
+	-fx-font-family:Arial;
+	-fx-font-size:30px;
+	-fx-text-decoration:none;
+	-fx-cursor:hand;
+	-fx-text-fill:white;
+}
+.editButton:hover{
+ -fx-background-color:#666666;
+ -fx-text-fill:white;
+}
 
 .Searchbar {
 	-fx-background-color:#000000;
@@ -85,6 +98,7 @@
 .ListOfBuys {
     -fx-border-color:#707070;
     -fx-border-width: 0px 0px 1px 0px;
+    -fx-background-color:white;
 }
 .StandardLabel{
     -fx-background-color:white;
@@ -147,7 +161,7 @@
     -fx-background-color:#fa4946;
 }
 .ConfirmPayment{
-    -fx-background-color: #d6efd2;
+    -fx-background-color: #98d78e;
 	-fx-background-radius: 40px;
 	-fx-font-family:Arial;
 	-fx-font-size:50px;
